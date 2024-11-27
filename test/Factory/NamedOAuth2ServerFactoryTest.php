@@ -12,6 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 class NamedOAuth2ServerFactoryTest extends TestCase
 {
+    protected ServiceManager $services;
+    protected NamedOAuth2ServerFactory $factory;
+
     public function setUp(): void
     {
         $this->services = $this->setUpConfig(new ServiceManager());
@@ -67,21 +70,21 @@ class NamedOAuth2ServerFactoryTest extends TestCase
 
     public function testCallingReturnedFactoryMultipleTimesWithNoArgumentReturnsSameServerInstance(): void
     {
-        $factory = $this->factory->__invoke($this->services, 'NamedOAuth2Server');
+        $factory = $this->factory->__invoke($this->services);
         $server  = $factory();
         $this->assertSame($server, $factory());
     }
 
     public function testCallingReturnedFactoryMultipleTimesWithSameArgumentReturnsSameServerInstance(): void
     {
-        $factory = $this->factory->__invoke($this->services, 'NamedOAuth2Server');
+        $factory = $this->factory->__invoke($this->services);
         $server  = $factory('test');
         $this->assertSame($server, $factory('test'));
     }
 
     public function testCallingReturnedFactoryMultipleTimesWithDifferentArgumentsReturnsDifferentInstances(): void
     {
-        $factory = $this->factory->__invoke($this->services, 'NamedOAuth2Server');
+        $factory = $this->factory->__invoke($this->services);
         $server  = $factory('test');
         $this->assertNotSame($server, $factory());
         $this->assertNotSame($server, $factory('test2'));
@@ -89,7 +92,7 @@ class NamedOAuth2ServerFactoryTest extends TestCase
 
     public function testCallingReturnedFactoryWithUnrecognizedArgumentReturnsApplicationWideInstance(): void
     {
-        $factory = $this->factory->__invoke($this->services, 'NamedOAuth2Server');
+        $factory = $this->factory->__invoke($this->services);
         $server  = $factory();
         $this->assertSame($server, $factory('unknown'));
     }

@@ -12,11 +12,18 @@ use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use LaminasTest\ApiTools\MvcAuth\RouteMatchFactoryTrait;
 use LaminasTest\ApiTools\MvcAuth\TestAsset;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class DefaultResourceResolverListenerTest extends TestCase
 {
     use RouteMatchFactoryTrait;
+
+    protected DefaultResourceResolverListener $listener;
+    protected array $restControllers;
+    protected MvcAuthEvent $mvcAuthEvent;
+    protected TestAsset\AuthenticationService $authentication;
+    protected MockObject $authorization;
 
     public function setUp(): void
     {

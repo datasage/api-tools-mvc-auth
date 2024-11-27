@@ -32,7 +32,6 @@ final class HttpAdapterFactory
     /**
      * Create an HttpAuth instance based on the configuration passed.
      *
-     * @param array $config
      * @return HttpAuth
      */
     public static function factory(array $config, ?ContainerInterface $container = null)

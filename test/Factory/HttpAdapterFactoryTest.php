@@ -35,7 +35,7 @@ class HttpAdapterFactoryTest extends TestCase
     }
 
     /** @psalm-return array<string, array{0: mixed}> */
-    public function invalidAcceptSchemes(): array
+    public static function invalidAcceptSchemes(): array
     {
         return [
             'null'      => [null],
@@ -93,7 +93,7 @@ class HttpAdapterFactoryTest extends TestCase
     }
 
     /** @psalm-return array<string, array{0: array<string, mixed>}> */
-    public function validConfigWithoutResolvers(): array
+    public static function validConfigWithoutResolvers(): array
     {
         return [
             'basic'  => [
@@ -122,7 +122,6 @@ class HttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @param array $config
      * @dataProvider validConfigWithoutResolvers
      * @psalm-param array<string, mixed> $config
      */

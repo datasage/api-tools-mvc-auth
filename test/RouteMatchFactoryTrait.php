@@ -14,7 +14,6 @@ trait RouteMatchFactoryTrait
     /**
      * Create and return a version-specific RouteMatch instance.
      *
-     * @param array $params
      * @return RouteMatch|V2RouteMatch
      */
     public function createRouteMatch(array $params = [])

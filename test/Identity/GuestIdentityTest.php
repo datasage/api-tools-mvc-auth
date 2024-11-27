@@ -12,6 +12,8 @@ use PHPUnit\Framework\TestCase;
 
 class GuestIdentityTest extends TestCase
 {
+    protected GuestIdentity $identity;
+
     public function setUp(): void
     {
         $this->identity = new GuestIdentity();

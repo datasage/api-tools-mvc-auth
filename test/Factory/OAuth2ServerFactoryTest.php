@@ -135,7 +135,7 @@ class OAuth2ServerFactoryTest extends TestCase
     }
 
     /** @psalm-return array<string, array{0: string}> */
-    public function disableGrantType(): array
+    public static function disableGrantType(): array
     {
         return [
             'client_credentials' => ['client_credentials'],

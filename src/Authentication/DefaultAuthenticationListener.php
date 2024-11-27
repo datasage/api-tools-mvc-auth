@@ -80,7 +80,6 @@ class DefaultAuthenticationListener
      * of adapters, that your application supports. The values provided are
      * merged with any types already discovered.
      *
-     * @param array $types
      * @return void
      */
     public function addAuthenticationTypes(array $types)
@@ -147,7 +146,6 @@ class DefaultAuthenticationListener
     /**
      * Set the API/version to authentication type map.
      *
-     * @param array $map
      * @return void
      */
     public function setAuthMap(array $map)

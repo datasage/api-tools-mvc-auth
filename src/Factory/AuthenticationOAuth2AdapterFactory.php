@@ -23,7 +23,6 @@ final class AuthenticationOAuth2AdapterFactory
      * Create and return an OAuth2Adapter instance.
      *
      * @param string|array $type
-     * @param array $config
      * @param ContainerInterface $services
      * @return OAuth2Adapter
      */

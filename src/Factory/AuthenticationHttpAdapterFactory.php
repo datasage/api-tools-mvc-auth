@@ -24,7 +24,6 @@ final class AuthenticationHttpAdapterFactory
      * and the registered AuthenticationService.
      *
      * @param string $type The base "type" the adapter will provide
-     * @param array $config
      * @return HttpAdapter
      */
     public static function factory($type, array $config, ContainerInterface $container)

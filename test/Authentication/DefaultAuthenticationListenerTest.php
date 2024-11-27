@@ -182,7 +182,6 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @param array $params
      * @depends testInvokeForBasicAuthSetsIdentityWhenValid
      * @psalm-param array{identity: array, mvc_event: MvcEvent} $params
      */
@@ -196,7 +195,6 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @param array $params
      * @depends testInvokeForBasicAuthSetsGuestIdentityWhenValid
      * @psalm-param array{identity: array, mvc_event: MvcEvent} $params
      */
@@ -278,7 +276,7 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /** @psalm-return array<array-key, array{0: string}> */
-    public function requestMethodsWithRequestBodies(): array
+    public static function requestMethodsWithRequestBodies(): array
     {
         return [
             ['DELETE'],
@@ -368,7 +366,7 @@ class DefaultAuthenticationListenerTest extends TestCase
      *     2: callable():HttpRequest
      * }>
      */
-    public function mappedAuthenticationControllers(): array
+    public static function mappedAuthenticationControllers(): array
     {
         return [
             'Foo\V2' => [

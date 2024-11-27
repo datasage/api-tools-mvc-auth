@@ -189,7 +189,6 @@ class OAuth2Adapter extends AbstractAdapter
     /**
      * Merge the OAuth2\Response headers into the current Laminas\Http\Response.
      *
-     * @param array $oauth2Headers
      * @return Response
      */
     private function mergeOAuth2ResponseHeaders(Response $response, array $oauth2Headers)
