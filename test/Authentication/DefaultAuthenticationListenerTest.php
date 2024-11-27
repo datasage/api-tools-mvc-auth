@@ -182,7 +182,6 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @param array $params
      * @depends testInvokeForBasicAuthSetsIdentityWhenValid
      * @psalm-param array{identity: array, mvc_event: MvcEvent} $params
      */
@@ -196,7 +195,6 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @param array $params
      * @depends testInvokeForBasicAuthSetsGuestIdentityWhenValid
      * @psalm-param array{identity: array, mvc_event: MvcEvent} $params
      */

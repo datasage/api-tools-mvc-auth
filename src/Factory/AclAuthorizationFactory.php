@@ -61,7 +61,6 @@ class AclAuthorizationFactory implements FactoryInterface
      *
      * Consumes the AclFactory in order to create the AclAuthorization instance.
      *
-     * @param array $config
      * @return AclAuthorization
      */
     protected function createAclFromConfig(array $config)
@@ -88,7 +87,6 @@ class AclAuthorizationFactory implements FactoryInterface
      * - Extracts privileges for each of "collection" and "entity" configured
      *
      * @param string $controllerService
-     * @param array $privileges
      * @param array $aclConfig
      * @param bool $denyByDefault
      */
@@ -130,7 +128,6 @@ class AclAuthorizationFactory implements FactoryInterface
     /**
      * Create the list of HTTP methods defining privileges
      *
-     * @param array $methods
      * @param bool $denyByDefault
      * @return array|null
      */

@@ -122,7 +122,6 @@ class HttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @param array $config
      * @dataProvider validConfigWithoutResolvers
      * @psalm-param array<string, mixed> $config
      */

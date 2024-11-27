@@ -45,7 +45,6 @@ class AuthenticationHttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @param array $config
      * @dataProvider invalidConfiguration
      * @psalm-param array<string, mixed> $config
      */
