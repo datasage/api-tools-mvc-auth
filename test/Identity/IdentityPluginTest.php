@@ -13,6 +13,9 @@ use PHPUnit\Framework\TestCase;
 
 class IdentityPluginTest extends TestCase
 {
+    protected IdentityPlugin $plugin;
+    protected MvcEvent $event;
+
     public function setUp(): void
     {
         $this->event = $event = new MvcEvent();

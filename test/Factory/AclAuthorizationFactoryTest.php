@@ -27,7 +27,7 @@ class AclAuthorizationFactoryTest extends TestCase
     }
 
     /** @psalm-return iterable<string, array{0: array<string, mixed>}> */
-    public function whitelistAclProvider(): iterable
+    public static function whitelistAclProvider(): iterable
     {
         $entityConfig     = [
             'GET'    => false,

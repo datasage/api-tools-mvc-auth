@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\ApiTools\MvcAuth\Factory;
 
+use Closure;
 use Laminas\ApiTools\MvcAuth\Authentication\DefaultAuthenticationListener;
 use Laminas\ApiTools\MvcAuth\Authentication\HttpAdapter;
 use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
@@ -14,10 +15,10 @@ use PHPUnit\Framework\TestCase;
 
 class AuthenticationAdapterDelegatorFactoryTest extends TestCase
 {
-    /** @var AuthenticationAdapterDelegatorFactory */
-    private $factory;
-    /** @var ServiceManager */
-    private $services;
+    private AuthenticationAdapterDelegatorFactory $factory;
+    private ServiceManager $services;
+    protected DefaultAuthenticationListener $listener;
+    protected Closure $callback;
 
     public function setUp(): void
     {

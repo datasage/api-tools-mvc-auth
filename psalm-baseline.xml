@@ -3,6 +3,7 @@
   <file src="config/module.config.php">
     <UndefinedClass>
       <code><![CDATA[Authentication\AuthHttpAdapter]]></code>
+      <code><![CDATA[IdentityPlugin]]></code>
     </UndefinedClass>
   </file>
   <file src="src/Authentication/AbstractAdapter.php">
@@ -287,6 +288,9 @@
     </MixedArgument>
   </file>
   <file src="src/Factory/AuthenticationOAuth2AdapterFactory.php">
+    <InvalidDocblockParamName>
+      <code><![CDATA[$services]]></code>
+    </InvalidDocblockParamName>
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$type]]></code>
     </MixedArgumentTypeCoercion>
@@ -382,6 +386,8 @@
     </DeprecatedInterface>
     <MixedArgument>
       <code><![CDATA[$authorization]]></code>
+      <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface::class]]></code>
+      <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface::class]]></code>
     </MixedArgument>
     <MixedAssignment>
       <code><![CDATA[$authorization]]></code>
@@ -389,6 +395,10 @@
     <ParamNameMismatch>
       <code><![CDATA[$container]]></code>
     </ParamNameMismatch>
+    <UndefinedClass>
+      <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface]]></code>
+      <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface]]></code>
+    </UndefinedClass>
   </file>
   <file src="src/Factory/DefaultResourceResolverListenerFactory.php">
     <DeprecatedInterface>
@@ -784,145 +794,31 @@
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/Authentication/DefaultAuthenticationPostListenerTest.php">
-    <MixedAssignment>
-      <code><![CDATA[$listener]]></code>
-      <code><![CDATA[$listener]]></code>
-      <code><![CDATA[$listener]]></code>
-      <code><![CDATA[$listener]]></code>
-      <code><![CDATA[$response]]></code>
-    </MixedAssignment>
-    <MixedFunctionCall>
-      <code><![CDATA[$listener($this->mvcAuthEvent)]]></code>
-      <code><![CDATA[$listener($this->mvcAuthEvent)]]></code>
-      <code><![CDATA[$listener($this->mvcAuthEvent)]]></code>
-      <code><![CDATA[$listener($this->mvcAuthEvent)]]></code>
-    </MixedFunctionCall>
-    <MixedMethodCall>
-      <code><![CDATA[getMvcEvent]]></code>
-      <code><![CDATA[getMvcEvent]]></code>
+    <UndefinedInterfaceMethod>
       <code><![CDATA[getReasonPhrase]]></code>
-      <code><![CDATA[getResponse]]></code>
       <code><![CDATA[getStatusCode]]></code>
-      <code><![CDATA[setAuthenticationResult]]></code>
-      <code><![CDATA[setAuthenticationResult]]></code>
-      <code><![CDATA[setAuthenticationResult]]></code>
-      <code><![CDATA[setResponse]]></code>
-    </MixedMethodCall>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->authorization]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-    </UndefinedThisPropertyFetch>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="test/Authentication/HttpAdapterTest.php">
-    <MixedArgument>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->response]]></code>
-      <code><![CDATA[$this->response]]></code>
-      <code><![CDATA[$this->response]]></code>
-    </MixedArgument>
-    <MixedMethodCall>
+    <PossiblyInvalidMethodCall>
       <code><![CDATA[addHeaderLine]]></code>
       <code><![CDATA[addHeaderLine]]></code>
-      <code><![CDATA[getHeaders]]></code>
-      <code><![CDATA[getHeaders]]></code>
-    </MixedMethodCall>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->response]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->request]]></code>
-      <code><![CDATA[$this->response]]></code>
-      <code><![CDATA[$this->response]]></code>
-      <code><![CDATA[$this->response]]></code>
-    </UndefinedThisPropertyFetch>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedMethod>
+      <code><![CDATA[addHeaderLine]]></code>
+      <code><![CDATA[addHeaderLine]]></code>
+    </PossiblyUndefinedMethod>
   </file>
   <file src="test/Authentication/OAuth2AdapterTest.php">
     <MixedAssignment>
       <code><![CDATA[$instance]]></code>
     </MixedAssignment>
     <MixedMethodCall>
-      <code><![CDATA[authenticate]]></code>
-      <code><![CDATA[authenticate]]></code>
-      <code><![CDATA[authenticate]]></code>
-      <code><![CDATA[authenticate]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
       <code><![CDATA[getFieldValue]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[willReturn]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
     </MixedMethodCall>
     <PossiblyInvalidMethodCall>
       <code><![CDATA[getFieldValue]]></code>
     </PossiblyInvalidMethodCall>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->adapter]]></code>
-      <code><![CDATA[$this->oauthServer]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->adapter]]></code>
-      <code><![CDATA[$this->adapter]]></code>
-      <code><![CDATA[$this->adapter]]></code>
-      <code><![CDATA[$this->adapter]]></code>
-      <code><![CDATA[$this->oauthServer]]></code>
-      <code><![CDATA[$this->oauthServer]]></code>
-      <code><![CDATA[$this->oauthServer]]></code>
-      <code><![CDATA[$this->oauthServer]]></code>
-    </UndefinedThisPropertyFetch>
   </file>
   <file src="test/Authorization/DefaultAuthorizationListenerTest.php">
     <DeprecatedClass>
@@ -965,93 +861,27 @@
       <code><![CDATA[getStatusCode]]></code>
       <code><![CDATA[setStatusCode]]></code>
     </UndefinedInterfaceMethod>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->authorization]]></code>
-    </UndefinedThisPropertyAssignment>
   </file>
   <file src="test/Authorization/DefaultResourceResolverListenerTest.php">
-    <MixedAssignment>
-      <code><![CDATA[$mvcEvent]]></code>
-      <code><![CDATA[$mvcEvent]]></code>
-      <code><![CDATA[$mvcEvent]]></code>
-      <code><![CDATA[$mvcEvent]]></code>
-      <code><![CDATA[$mvcEvent]]></code>
-      <code><![CDATA[$mvcEvent]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$routeMatch]]></code>
-      <code><![CDATA[$routeMatch]]></code>
-      <code><![CDATA[$routeMatch]]></code>
-      <code><![CDATA[$routeMatch]]></code>
-      <code><![CDATA[$routeMatch]]></code>
-      <code><![CDATA[$routeMatch]]></code>
-    </MixedAssignment>
     <MixedMethodCall>
-      <code><![CDATA[buildResourceString]]></code>
-      <code><![CDATA[buildResourceString]]></code>
-      <code><![CDATA[buildResourceString]]></code>
-      <code><![CDATA[buildResourceString]]></code>
-      <code><![CDATA[buildResourceString]]></code>
-      <code><![CDATA[buildResourceString]]></code>
-      <code><![CDATA[getMvcEvent]]></code>
-      <code><![CDATA[getMvcEvent]]></code>
-      <code><![CDATA[getMvcEvent]]></code>
-      <code><![CDATA[getMvcEvent]]></code>
-      <code><![CDATA[getMvcEvent]]></code>
-      <code><![CDATA[getMvcEvent]]></code>
-      <code><![CDATA[getQuery]]></code>
-      <code><![CDATA[getRequest]]></code>
-      <code><![CDATA[getRequest]]></code>
-      <code><![CDATA[getRequest]]></code>
-      <code><![CDATA[getRequest]]></code>
-      <code><![CDATA[getRequest]]></code>
-      <code><![CDATA[getRequest]]></code>
-      <code><![CDATA[getRouteMatch]]></code>
-      <code><![CDATA[getRouteMatch]]></code>
-      <code><![CDATA[getRouteMatch]]></code>
-      <code><![CDATA[getRouteMatch]]></code>
-      <code><![CDATA[getRouteMatch]]></code>
-      <code><![CDATA[getRouteMatch]]></code>
       <code><![CDATA[set]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
     </MixedMethodCall>
     <PossiblyInvalidArgument>
       <code><![CDATA[$routeMatch]]></code>
     </PossiblyInvalidArgument>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->authentication]]></code>
-      <code><![CDATA[$this->authorization]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->restControllers]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-      <code><![CDATA[$this->mvcAuthEvent]]></code>
-    </UndefinedThisPropertyFetch>
+    <PossiblyNullArgument>
+      <code><![CDATA[$routeMatch]]></code>
+    </PossiblyNullArgument>
+    <PossiblyNullReference>
+      <code><![CDATA[setParam]]></code>
+      <code><![CDATA[setParam]]></code>
+      <code><![CDATA[setParam]]></code>
+      <code><![CDATA[setParam]]></code>
+      <code><![CDATA[setParam]]></code>
+    </PossiblyNullReference>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[getQuery]]></code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="test/Factory/AclAuthorizationFactoryTest.php">
     <MixedArgument>
@@ -1083,22 +913,6 @@
       <code><![CDATA[$action]]></code>
     </MixedOperand>
   </file>
-  <file src="test/Factory/AuthenticationAdapterDelegatorFactoryTest.php">
-    <MixedArgument>
-      <code><![CDATA[$this->callback]]></code>
-      <code><![CDATA[$this->callback]]></code>
-    </MixedArgument>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->callback]]></code>
-      <code><![CDATA[$this->listener]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->callback]]></code>
-      <code><![CDATA[$this->callback]]></code>
-      <code><![CDATA[$this->listener]]></code>
-      <code><![CDATA[$this->listener]]></code>
-    </UndefinedThisPropertyFetch>
-  </file>
   <file src="test/Factory/AuthenticationHttpAdapterFactoryTest.php">
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
@@ -1106,32 +920,14 @@
       <code><![CDATA[returnValue]]></code>
       <code><![CDATA[returnValue]]></code>
     </DeprecatedMethod>
+    <InvalidArgument>
+      <code><![CDATA[$this->services]]></code>
+      <code><![CDATA[$this->services]]></code>
+      <code><![CDATA[$this->services]]></code>
+    </InvalidArgument>
     <InvalidDocblock>
       <code><![CDATA[public function validConfiguration(): array]]></code>
     </InvalidDocblock>
-    <MixedArgument>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-    </MixedArgument>
-    <MixedMethodCall>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[will]]></code>
-      <code><![CDATA[will]]></code>
-      <code><![CDATA[will]]></code>
-      <code><![CDATA[will]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-      <code><![CDATA[with]]></code>
-    </MixedMethodCall>
     <MixedReturnStatement>
       <code><![CDATA[array<string, array{
      *     0: array<string, mixed>
@@ -1141,36 +937,15 @@
     <PossiblyInvalidArgument>
       <code><![CDATA[testRaisesExceptionIfMissingConfigurationOptions]]></code>
     </PossiblyInvalidArgument>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->services]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-    </UndefinedThisPropertyFetch>
   </file>
   <file src="test/Factory/AuthenticationOAuth2AdapterFactoryTest.php">
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
     </DeprecatedMethod>
-    <MixedArgument>
+    <InvalidArgument>
       <code><![CDATA[$this->services]]></code>
       <code><![CDATA[$this->services]]></code>
-    </MixedArgument>
-    <MixedMethodCall>
-      <code><![CDATA[expects]]></code>
-      <code><![CDATA[method]]></code>
-      <code><![CDATA[will]]></code>
-      <code><![CDATA[with]]></code>
-    </MixedMethodCall>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->services]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-    </UndefinedThisPropertyFetch>
+    </InvalidArgument>
   </file>
   <file src="test/Factory/DefaultAuthenticationListenerFactoryTest.php">
     <MixedArgument>
@@ -1213,49 +988,14 @@
   </file>
   <file src="test/Factory/NamedOAuth2ServerFactoryTest.php">
     <MixedAssignment>
-      <code><![CDATA[$factory]]></code>
-      <code><![CDATA[$factory]]></code>
-      <code><![CDATA[$factory]]></code>
-      <code><![CDATA[$factory]]></code>
       <code><![CDATA[$server]]></code>
       <code><![CDATA[$server]]></code>
       <code><![CDATA[$server]]></code>
       <code><![CDATA[$server]]></code>
     </MixedAssignment>
-    <MixedFunctionCall>
-      <code><![CDATA[$factory('test')]]></code>
-      <code><![CDATA[$factory('test')]]></code>
-      <code><![CDATA[$factory('test')]]></code>
-      <code><![CDATA[$factory('test2')]]></code>
-      <code><![CDATA[$factory('unknown')]]></code>
-      <code><![CDATA[$factory()]]></code>
-      <code><![CDATA[$factory()]]></code>
-      <code><![CDATA[$factory()]]></code>
-      <code><![CDATA[$factory()]]></code>
-    </MixedFunctionCall>
-    <MixedMethodCall>
-      <code><![CDATA[__invoke]]></code>
-      <code><![CDATA[__invoke]]></code>
-      <code><![CDATA[__invoke]]></code>
-      <code><![CDATA[__invoke]]></code>
-    </MixedMethodCall>
     <TooManyArguments>
       <code><![CDATA[disableOriginalConstructor]]></code>
     </TooManyArguments>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->factory]]></code>
-      <code><![CDATA[$this->services]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->factory]]></code>
-      <code><![CDATA[$this->factory]]></code>
-      <code><![CDATA[$this->factory]]></code>
-      <code><![CDATA[$this->factory]]></code>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-    </UndefinedThisPropertyFetch>
   </file>
   <file src="test/Factory/OAuth2ServerFactoryTest.php">
     <MixedArgument>
@@ -1283,69 +1023,14 @@
     </UnusedMethodCall>
   </file>
   <file src="test/Identity/AuthenticatedIdentityTest.php">
-    <MixedMethodCall>
-      <code><![CDATA[getAuthenticationIdentity]]></code>
-      <code><![CDATA[getName]]></code>
-      <code><![CDATA[getRoleId]]></code>
-      <code><![CDATA[setName]]></code>
-    </MixedMethodCall>
-    <MixedPropertyFetch>
+    <MixedArgument>
       <code><![CDATA[$this->authIdentity->name]]></code>
-    </MixedPropertyFetch>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->authIdentity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->authIdentity]]></code>
-      <code><![CDATA[$this->authIdentity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-    </UndefinedThisPropertyFetch>
-  </file>
-  <file src="test/Identity/GuestIdentityTest.php">
-    <MixedMethodCall>
-      <code><![CDATA[getAuthenticationIdentity]]></code>
-      <code><![CDATA[getName]]></code>
-      <code><![CDATA[getRoleId]]></code>
-    </MixedMethodCall>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->identity]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-      <code><![CDATA[$this->identity]]></code>
-    </UndefinedThisPropertyFetch>
+    </MixedArgument>
   </file>
   <file src="test/Identity/IdentityPluginTest.php">
     <DeprecatedMethod>
       <code><![CDATA[returnCallback]]></code>
     </DeprecatedMethod>
-    <MixedMethodCall>
-      <code><![CDATA[__invoke]]></code>
-      <code><![CDATA[__invoke]]></code>
-      <code><![CDATA[__invoke]]></code>
-      <code><![CDATA[setParam]]></code>
-      <code><![CDATA[setParam]]></code>
-    </MixedMethodCall>
-    <UndefinedThisPropertyAssignment>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->plugin]]></code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->event]]></code>
-      <code><![CDATA[$this->plugin]]></code>
-      <code><![CDATA[$this->plugin]]></code>
-      <code><![CDATA[$this->plugin]]></code>
-    </UndefinedThisPropertyFetch>
   </file>
   <file src="test/ModuleTest.php">
     <InvalidArgument>
