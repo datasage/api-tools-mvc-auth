@@ -925,15 +925,6 @@
       <code><![CDATA[$this->services]]></code>
       <code><![CDATA[$this->services]]></code>
     </InvalidArgument>
-    <InvalidDocblock>
-      <code><![CDATA[public function validConfiguration(): array]]></code>
-    </InvalidDocblock>
-    <MixedReturnStatement>
-      <code><![CDATA[array<string, array{
-     *     0: array<string, mixed>
-     *     1: string[]
-     * }>]]></code>
-    </MixedReturnStatement>
     <PossiblyInvalidArgument>
       <code><![CDATA[testRaisesExceptionIfMissingConfigurationOptions]]></code>
     </PossiblyInvalidArgument>

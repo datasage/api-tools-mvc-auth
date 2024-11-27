@@ -64,10 +64,7 @@ class AuthenticationHttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @psalm-return array<string, array{
-     *     0: array<string, mixed>
-     *     1: string[]
-     * }>
+     * @psalm-return array<string, array{array<string, mixed>,string[]}>
      */
     public static function validConfiguration(): array
     {
