@@ -284,15 +284,13 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
         $listener = $factory($this->services, 'DefaultAuthenticationListener');
         $this->assertInstanceOf(DefaultAuthenticationListener::class, $listener);
 
-        $r = new ReflectionProperty($listener, 'adapters');
-        $r->setAccessible(true);
+        $r        = new ReflectionProperty($listener, 'adapters');
         $adapters = $r->getValue($listener);
         $adapter  = array_shift($adapters);
         $this->assertInstanceOf(OAuth2Adapter::class, $adapter);
 
         $oauth2ServerProperty = new ReflectionProperty($adapter, 'oauth2Server');
-        $oauth2ServerProperty->setAccessible(true);
-        $actualOauth2Server = $oauth2ServerProperty->getValue($adapter);
+        $actualOauth2Server   = $oauth2ServerProperty->getValue($adapter);
 
         $this->assertSame($oauth2Server, $actualOauth2Server);
     }
@@ -316,8 +314,7 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
         $this->assertInstanceOf(DefaultAuthenticationListener::class, $listener);
 
         $authMapProperty = new ReflectionProperty($listener, 'authMap');
-        $authMapProperty->setAccessible(true);
-        $actualAuthMap = $authMapProperty->getValue($listener);
+        $actualAuthMap   = $authMapProperty->getValue($listener);
 
         $this->assertSame(['Testing\V1' => 'oauth2'], $actualAuthMap);
     }
@@ -329,7 +326,6 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
     private function getHttpAdapter(DefaultAuthenticationListener $listener)
     {
         $httpAdapterProperty = new ReflectionProperty($listener, 'httpAdapter');
-        $httpAdapterProperty->setAccessible(true);
 
         return $httpAdapterProperty->getValue($listener);
     }

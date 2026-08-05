@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
   <file src="config/module.config.php">
     <UndefinedClass>
       <code><![CDATA[Authentication\AuthHttpAdapter]]></code>
@@ -7,9 +7,16 @@
     </UndefinedClass>
   </file>
   <file src="src/Authentication/AbstractAdapter.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getTypeFromRequest(Request $request)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$authorization->getFieldValue()]]></code>
     </MixedArgument>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$credential]]></code>
+      <code><![CDATA[$type]]></code>
+    </PossiblyInvalidArrayAccess>
     <PossiblyInvalidMethodCall>
       <code><![CDATA[getFieldValue]]></code>
     </PossiblyInvalidMethodCall>
@@ -20,11 +27,19 @@
       <code><![CDATA[$credential]]></code>
     </UnusedVariable>
   </file>
+  <file src="src/Authentication/AdapterInterface.php">
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[void|Response]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
   <file src="src/Authentication/DefaultAuthenticationListener.php">
     <ArgumentTypeCoercion>
       <code><![CDATA[$response]]></code>
       <code><![CDATA[$response]]></code>
     </ArgumentTypeCoercion>
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthenticationListener]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[attachHttpAdapter]]></code>
     </DeprecatedMethod>
@@ -38,17 +53,20 @@
     <MixedArgument>
       <code><![CDATA[$mvcAuthEvent->getAuthenticationService()]]></code>
     </MixedArgument>
-    <MixedInferredReturnType>
-      <code><![CDATA[string|false]]></code>
-    </MixedInferredReturnType>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$type]]></code>
     </RiskyTruthyFalsyComparison>
     <UndefinedDocblockClass>
       <code><![CDATA[null|V2RouteMatch|RouteMatch]]></code>
     </UndefinedDocblockClass>
+    <UnusedProperty>
+      <code><![CDATA[$authMap]]></code>
+    </UnusedProperty>
   </file>
   <file src="src/Authentication/DefaultAuthenticationPostListener.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthenticationPostListener]]></code>
+    </ClassMustBeFinal>
     <LessSpecificReturnStatement>
       <code><![CDATA[$response]]></code>
     </LessSpecificReturnStatement>
@@ -60,6 +78,15 @@
     </PossiblyNullReference>
   </file>
   <file src="src/Authentication/HttpAdapter.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[HttpAdapter]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function authenticate(Request $request, Response $response, MvcAuthEvent $mvcAuthEvent)]]></code>
+      <code><![CDATA[public function matches($type)]]></code>
+      <code><![CDATA[public function preAuth(Request $request, Response $response)]]></code>
+      <code><![CDATA[public function provides()]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$name]]></code>
     </MixedArgument>
@@ -76,9 +103,19 @@
     </TooManyArguments>
   </file>
   <file src="src/Authentication/OAuth2Adapter.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[OAuth2Adapter]]></code>
+    </ClassMustBeFinal>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[Identity\AuthenticatedIdentity|Identity\GuestIdentity|Response]]></code>
     </ImplementedReturnTypeMismatch>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function authenticate(Request $request, Response $response, MvcAuthEvent $mvcAuthEvent)]]></code>
+      <code><![CDATA[public function getTypeFromRequest(Request $request)]]></code>
+      <code><![CDATA[public function matches($type)]]></code>
+      <code><![CDATA[public function preAuth(Request $request, Response $response)]]></code>
+      <code><![CDATA[public function provides()]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$oauth2Response]]></code>
       <code><![CDATA[$oauth2Response->getHttpHeaders()]]></code>
@@ -130,6 +167,12 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="src/Authorization/AclAuthorization.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AclAuthorization]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function isAuthorized(IdentityInterface $identity, $resource, $privilege)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$privilege]]></code>
       <code><![CDATA[$resource]]></code>
@@ -146,15 +189,26 @@
       <code><![CDATA[$resource]]></code>
     </MixedAssignment>
   </file>
+  <file src="src/Authorization/AuthorizationInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[isAuthorized]]></code>
+    </PossiblyUnusedMethod>
+  </file>
   <file src="src/Authorization/DefaultAuthorizationListener.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[bool]]></code>
-    </MixedInferredReturnType>
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthorizationListener]]></code>
+    </ClassMustBeFinal>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$authorization]]></code>
+    </PossiblyUnusedProperty>
     <UndefinedClass>
       <code><![CDATA[V2RouteMatch]]></code>
     </UndefinedClass>
   </file>
   <file src="src/Authorization/DefaultAuthorizationPostListener.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthorizationPostListener]]></code>
+    </ClassMustBeFinal>
     <LessSpecificReturnStatement>
       <code><![CDATA[$response]]></code>
     </LessSpecificReturnStatement>
@@ -163,12 +217,25 @@
     </MoreSpecificReturnType>
   </file>
   <file src="src/Authorization/DefaultResourceResolverListener.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[false|string]]></code>
-    </MixedInferredReturnType>
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultResourceResolverListener]]></code>
+    </ClassMustBeFinal>
     <PossiblyNullArgument>
       <code><![CDATA[$routeMatch]]></code>
     </PossiblyNullArgument>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getIdentifier]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedParam>
+      <code><![CDATA[$identifierName]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$routeMatch]]></code>
+      <code><![CDATA[$routeMatch]]></code>
+    </PossiblyUnusedParam>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$restControllers]]></code>
+    </PossiblyUnusedProperty>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $resource]]></code>
     </RiskyTruthyFalsyComparison>
@@ -178,9 +245,16 @@
     </UndefinedDocblockClass>
   </file>
   <file src="src/Factory/AclAuthorizationFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AclAuthorizationFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[AclAuthorizationFactory]]></code>
     </DeprecatedInterface>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$action]]></code>
       <code><![CDATA[$methods]]></code>
@@ -202,9 +276,6 @@
       <code><![CDATA[$methods]]></code>
       <code><![CDATA[$privileges]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[array]]></code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[$config['api-tools-mvc-auth']['authorization']]]></code>
     </MixedReturnStatement>
@@ -213,12 +284,19 @@
     </ParamNameMismatch>
   </file>
   <file src="src/Factory/ApacheResolverFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ApacheResolverFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[ApacheResolverFactory]]></code>
     </DeprecatedInterface>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[false|ApacheResolver]]></code>
     </ImplementedReturnTypeMismatch>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[ApacheResolver::class]]></code>
     </MixedArgument>
@@ -232,9 +310,6 @@
       <code><![CDATA[$config]]></code>
       <code><![CDATA[$htpasswd]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[false|ApacheResolver]]></code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[new ApacheResolver($htpasswd)]]></code>
     </MixedReturnStatement>
@@ -251,9 +326,16 @@
     </UndefinedDocblockClass>
   </file>
   <file src="src/Factory/AuthenticationAdapterDelegatorFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationAdapterDelegatorFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[AuthenticationAdapterDelegatorFactory]]></code>
     </DeprecatedInterface>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)]]></code>
+      <code><![CDATA[public function createDelegatorWithName(ServiceLocatorInterface $container, $name, $requestedName, $callback)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$data]]></code>
       <code><![CDATA[$listener]]></code>
@@ -270,9 +352,6 @@
       <code><![CDATA[$listener]]></code>
       <code><![CDATA[$type]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[DefaultAuthenticationListener]]></code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[$listener]]></code>
       <code><![CDATA[$listener]]></code>
@@ -286,6 +365,9 @@
     <MixedArgument>
       <code><![CDATA[$container->get('authentication')]]></code>
     </MixedArgument>
+    <UnusedConstructor>
+      <code><![CDATA[__construct]]></code>
+    </UnusedConstructor>
   </file>
   <file src="src/Factory/AuthenticationOAuth2AdapterFactory.php">
     <InvalidDocblockParamName>
@@ -294,11 +376,21 @@
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$type]]></code>
     </MixedArgumentTypeCoercion>
+    <UnusedConstructor>
+      <code><![CDATA[__construct]]></code>
+    </UnusedConstructor>
   </file>
   <file src="src/Factory/AuthenticationServiceFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationServiceFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[AuthenticationServiceFactory]]></code>
     </DeprecatedInterface>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$container->get(NonPersistent::class)]]></code>
     </MixedArgument>
@@ -307,12 +399,19 @@
     </ParamNameMismatch>
   </file>
   <file src="src/Factory/DefaultAuthHttpAdapterFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthHttpAdapterFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[DefaultAuthHttpAdapterFactory]]></code>
     </DeprecatedInterface>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[HttpAuth|false]]></code>
     </ImplementedReturnTypeMismatch>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$config['api-tools-mvc-auth']['authentication']['http']]]></code>
     </MixedArgument>
@@ -329,9 +428,16 @@
     </ParamNameMismatch>
   </file>
   <file src="src/Factory/DefaultAuthenticationListenerFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthenticationListenerFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[DefaultAuthenticationListenerFactory]]></code>
     </DeprecatedInterface>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$authService]]></code>
       <code><![CDATA[$config['api-tools-oauth2']['storage']]]></code>
@@ -358,10 +464,6 @@
     <MixedFunctionCall>
       <code><![CDATA[$factory()]]></code>
     </MixedFunctionCall>
-    <MixedInferredReturnType>
-      <code><![CDATA[array]]></code>
-      <code><![CDATA[array|false]]></code>
-    </MixedInferredReturnType>
     <MixedMethodCall>
       <code><![CDATA[getBasicResolver]]></code>
       <code><![CDATA[getDigestResolver]]></code>
@@ -379,11 +481,21 @@
     <TooManyArguments>
       <code><![CDATA[$serverFactory]]></code>
     </TooManyArguments>
+    <UnusedDocblockParam>
+      <code><![CDATA[$services]]></code>
+    </UnusedDocblockParam>
   </file>
   <file src="src/Factory/DefaultAuthorizationListenerFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthorizationListenerFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[DefaultAuthorizationListenerFactory]]></code>
     </DeprecatedInterface>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$authorization]]></code>
       <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface::class]]></code>
@@ -401,9 +513,16 @@
     </UndefinedClass>
   </file>
   <file src="src/Factory/DefaultResourceResolverListenerFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultResourceResolverListenerFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[DefaultResourceResolverListenerFactory]]></code>
     </DeprecatedInterface>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$config]]></code>
     </MixedArgument>
@@ -422,14 +541,24 @@
     <ParamNameMismatch>
       <code><![CDATA[$container]]></code>
     </ParamNameMismatch>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$httpMethods]]></code>
+    </PossiblyUnusedProperty>
   </file>
   <file src="src/Factory/FileResolverFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[FileResolverFactory]]></code>
+    </ClassMustBeFinal>
     <DeprecatedInterface>
       <code><![CDATA[FileResolverFactory]]></code>
     </DeprecatedInterface>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[false|FileResolver]]></code>
     </ImplementedReturnTypeMismatch>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)]]></code>
+      <code><![CDATA[public function createService(ServiceLocatorInterface $container)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$htdigest]]></code>
     </MixedArgument>
@@ -471,8 +600,14 @@
     <RedundantConditionGivenDocblockType>
       <code><![CDATA[is_string($key)]]></code>
     </RedundantConditionGivenDocblockType>
+    <UnusedConstructor>
+      <code><![CDATA[__construct]]></code>
+    </UnusedConstructor>
   </file>
   <file src="src/Factory/NamedOAuth2ServerFactory.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NamedOAuth2ServerFactory]]></code>
+    </ClassMustBeFinal>
     <EmptyArrayAccess>
       <code><![CDATA[$servers->api[$type]]]></code>
     </EmptyArrayAccess>
@@ -571,10 +706,6 @@
       <code><![CDATA[$storage[$key]]]></code>
       <code><![CDATA[$username]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[MongoDB]]></code>
-      <code><![CDATA[array]]></code>
-    </MixedInferredReturnType>
     <MixedPropertyFetch>
       <code><![CDATA[$mongo->{$config['database']}]]></code>
     </MixedPropertyFetch>
@@ -595,21 +726,43 @@
       <code><![CDATA[MongoDB]]></code>
       <code><![CDATA[array|ArrayAccess]]></code>
     </UndefinedDocblockClass>
+    <UnusedConstructor>
+      <code><![CDATA[__construct]]></code>
+    </UnusedConstructor>
   </file>
   <file src="src/Identity/AuthenticatedIdentity.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticatedIdentity]]></code>
+    </ClassMustBeFinal>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[null|string]]></code>
     </ImplementedReturnTypeMismatch>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getAuthenticationIdentity()]]></code>
+      <code><![CDATA[public function getRoleId()]]></code>
+    </MissingOverrideAttribute>
     <PropertyNotSetInConstructor>
       <code><![CDATA[AuthenticatedIdentity]]></code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="src/Identity/IdentityInterface.php">
-    <MissingReturnType>
-      <code><![CDATA[getAuthenticationIdentity]]></code>
-    </MissingReturnType>
+  <file src="src/Identity/GuestIdentity.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[GuestIdentity]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getAuthenticationIdentity()]]></code>
+      <code><![CDATA[public function getRoleId()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Identity/IdentityPlugin.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IdentityPlugin]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="src/Module.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Module]]></code>
+    </ClassMustBeFinal>
     <MixedArgument>
       <code><![CDATA[$authentication]]></code>
       <code><![CDATA[$this->container->get(DefaultAuthenticationListener::class)]]></code>
@@ -625,9 +778,6 @@
     <MixedAssignment>
       <code><![CDATA[$authentication]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[array]]></code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[include __DIR__ . '/../config/module.config.php']]></code>
     </MixedReturnStatement>
@@ -638,11 +788,17 @@
       <code><![CDATA[getMergedConfig]]></code>
       <code><![CDATA[has]]></code>
     </PossiblyNullReference>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[init]]></code>
+    </PossiblyUnusedMethod>
     <UndefinedInterfaceMethod>
       <code><![CDATA[setService]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/MvcAuthEvent.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[MvcAuthEvent]]></code>
+    </ClassMustBeFinal>
     <MissingTemplateParam>
       <code><![CDATA[MvcAuthEvent]]></code>
     </MissingTemplateParam>
@@ -662,12 +818,18 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/MvcRouteListener.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[MvcRouteListener]]></code>
+    </ClassMustBeFinal>
     <MissingClosureParamType>
       <code><![CDATA[$r]]></code>
       <code><![CDATA[$r]]></code>
       <code><![CDATA[$r]]></code>
       <code><![CDATA[$r]]></code>
     </MissingClosureParamType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function attach(EventManagerInterface $events, $priority = 1)]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$mvcAuthEvent::EVENT_AUTHENTICATION]]></code>
       <code><![CDATA[$mvcAuthEvent::EVENT_AUTHENTICATION_POST]]></code>
@@ -678,9 +840,6 @@
       <code><![CDATA[$result]]></code>
       <code><![CDATA[$result]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[null|Response]]></code>
-    </MixedInferredReturnType>
     <MixedReturnStatement>
       <code><![CDATA[$responses->last()]]></code>
     </MixedReturnStatement>
@@ -696,6 +855,9 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Authentication/DefaultAuthenticationListenerTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthenticationListenerTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
       <code><![CDATA[returnValue]]></code>
@@ -737,6 +899,9 @@
       <code><![CDATA[setOauth2Server]]></code>
       <code><![CDATA[setOauth2Server]]></code>
     </DeprecatedMethod>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedMethodCall>
       <code><![CDATA[set]]></code>
       <code><![CDATA[set]]></code>
@@ -792,14 +957,34 @@
       <code><![CDATA[addHeaderLine]]></code>
       <code><![CDATA[addHeaderLine]]></code>
     </PossiblyUndefinedMethod>
+    <PossiblyUnusedParam>
+      <code><![CDATA[$authType]]></code>
+      <code><![CDATA[$authType]]></code>
+    </PossiblyUnusedParam>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$configuration]]></code>
+      <code><![CDATA[$restControllers]]></code>
+    </PossiblyUnusedProperty>
   </file>
   <file src="test/Authentication/DefaultAuthenticationPostListenerTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthenticationPostListenerTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <UndefinedInterfaceMethod>
       <code><![CDATA[getReasonPhrase]]></code>
       <code><![CDATA[getStatusCode]]></code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Authentication/HttpAdapterTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[HttpAdapterTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <PossiblyInvalidMethodCall>
       <code><![CDATA[addHeaderLine]]></code>
       <code><![CDATA[addHeaderLine]]></code>
@@ -810,6 +995,12 @@
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/Authentication/OAuth2AdapterTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[OAuth2AdapterTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedAssignment>
       <code><![CDATA[$instance]]></code>
     </MixedAssignment>
@@ -819,8 +1010,19 @@
     <PossiblyInvalidMethodCall>
       <code><![CDATA[getFieldValue]]></code>
     </PossiblyInvalidMethodCall>
+    <PossiblyNullReference>
+      <code><![CDATA[getFieldValue]]></code>
+    </PossiblyNullReference>
+  </file>
+  <file src="test/Authorization/AclAuthorizationFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AclAuthorizationFactoryTest]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="test/Authorization/DefaultAuthorizationListenerTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthorizationListenerTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedClass>
       <code><![CDATA[new Config([
             'services' => [
@@ -839,12 +1041,19 @@
     <InvalidPropertyAssignmentValue>
       <code><![CDATA[new AclAuthorization()]]></code>
     </InvalidPropertyAssignmentValue>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <PossiblyInvalidArgument>
       <code><![CDATA[$routeMatch]]></code>
     </PossiblyInvalidArgument>
     <PossiblyNullReference>
+      <code><![CDATA[getName]]></code>
       <code><![CDATA[setParam]]></code>
     </PossiblyNullReference>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$restControllers]]></code>
+    </PossiblyUnusedProperty>
     <UndefinedDocblockClass>
       <code><![CDATA[$this->authorization]]></code>
       <code><![CDATA[$this->authorization]]></code>
@@ -855,6 +1064,12 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Authorization/DefaultAuthorizationPostListenerTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthorizationPostListenerTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <UndefinedInterfaceMethod>
       <code><![CDATA[getReasonPhrase]]></code>
       <code><![CDATA[getStatusCode]]></code>
@@ -863,6 +1078,12 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Authorization/DefaultResourceResolverListenerTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultResourceResolverListenerTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedMethodCall>
       <code><![CDATA[set]]></code>
     </MixedMethodCall>
@@ -884,6 +1105,12 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Factory/AclAuthorizationFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AclAuthorizationFactoryTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$method]]></code>
       <code><![CDATA[$method]]></code>
@@ -913,7 +1140,18 @@
       <code><![CDATA[$action]]></code>
     </MixedOperand>
   </file>
+  <file src="test/Factory/AuthenticationAdapterDelegatorFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationAdapterDelegatorFactoryTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="test/Factory/AuthenticationHttpAdapterFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationHttpAdapterFactoryTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
       <code><![CDATA[returnValue]]></code>
@@ -925,11 +1163,17 @@
       <code><![CDATA[$this->services]]></code>
       <code><![CDATA[$this->services]]></code>
     </InvalidArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <PossiblyInvalidArgument>
       <code><![CDATA[testRaisesExceptionIfMissingConfigurationOptions]]></code>
     </PossiblyInvalidArgument>
   </file>
   <file src="test/Factory/AuthenticationOAuth2AdapterFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationOAuth2AdapterFactoryTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
     </DeprecatedMethod>
@@ -937,8 +1181,17 @@
       <code><![CDATA[$this->services]]></code>
       <code><![CDATA[$this->services]]></code>
     </InvalidArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="test/Factory/DefaultAuthenticationListenerFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DefaultAuthenticationListenerFactoryTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$adapters]]></code>
       <code><![CDATA[ApacheResolver::class]]></code>
@@ -961,14 +1214,11 @@
       <code><![CDATA[AuthHttpAdapter]]></code>
       <code><![CDATA[FileResolver]]></code>
     </UndefinedClass>
-    <UnusedMethodCall>
-      <code><![CDATA[setAccessible]]></code>
-      <code><![CDATA[setAccessible]]></code>
-      <code><![CDATA[setAccessible]]></code>
-      <code><![CDATA[setAccessible]]></code>
-    </UnusedMethodCall>
   </file>
   <file src="test/Factory/HttpAdapterFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[HttpAdapterFactoryTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnValue]]></code>
       <code><![CDATA[returnValue]]></code>
@@ -976,8 +1226,17 @@
       <code><![CDATA[returnValue]]></code>
       <code><![CDATA[returnValue]]></code>
     </DeprecatedMethod>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="test/Factory/NamedOAuth2ServerFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NamedOAuth2ServerFactoryTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedAssignment>
       <code><![CDATA[$server]]></code>
       <code><![CDATA[$server]]></code>
@@ -989,6 +1248,9 @@
     </TooManyArguments>
   </file>
   <file src="test/Factory/OAuth2ServerFactoryTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[OAuth2ServerFactoryTest]]></code>
+    </ClassMustBeFinal>
     <MixedArgument>
       <code><![CDATA[$class]]></code>
       <code><![CDATA[$storageConfig]]></code>
@@ -1009,21 +1271,41 @@
     <TooManyArguments>
       <code><![CDATA[disableOriginalConstructor]]></code>
     </TooManyArguments>
-    <UnusedMethodCall>
-      <code><![CDATA[setAccessible]]></code>
-    </UnusedMethodCall>
   </file>
   <file src="test/Identity/AuthenticatedIdentityTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticatedIdentityTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
     <MixedArgument>
       <code><![CDATA[$this->authIdentity->name]]></code>
     </MixedArgument>
   </file>
+  <file src="test/Identity/GuestIdentityTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[GuestIdentityTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
   <file src="test/Identity/IdentityPluginTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[IdentityPluginTest]]></code>
+    </ClassMustBeFinal>
     <DeprecatedMethod>
       <code><![CDATA[returnCallback]]></code>
     </DeprecatedMethod>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="test/ModuleTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[ModuleTest]]></code>
+    </ClassMustBeFinal>
     <InvalidArgument>
       <code><![CDATA[$events]]></code>
       <code><![CDATA[$services]]></code>
@@ -1043,6 +1325,9 @@
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$config]]></code>
     </MixedArgumentTypeCoercion>
+    <MixedMethodCall>
+      <code><![CDATA[willReturn]]></code>
+    </MixedMethodCall>
     <MixedReturnStatement>
       <code><![CDATA[array<string, array{
      *     0: callable(MvcEvent|MvcAuthEvent):null|Response,
@@ -1054,13 +1339,30 @@
     <PossiblyInvalidArgument>
       <code><![CDATA[$listener]]></code>
     </PossiblyInvalidArgument>
+    <UndefinedMagicMethod>
+      <code><![CDATA[getRequest]]></code>
+    </UndefinedMagicMethod>
   </file>
   <file src="test/MvcAuthEventTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[MvcAuthEventTest]]></code>
+    </ClassMustBeFinal>
     <InvalidArgument>
       <code><![CDATA['success']]></code>
       <code><![CDATA['success']]></code>
       <code><![CDATA['success']]></code>
     </InvalidArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="test/MvcRouteListenerTest.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[MvcRouteListenerTest]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function setUp(): void]]></code>
+    </MissingOverrideAttribute>
   </file>
   <file src="test/RouteMatchFactoryTrait.php">
     <UndefinedDocblockClass>
@@ -1068,8 +1370,16 @@
     </UndefinedDocblockClass>
   </file>
   <file src="test/TestAsset/AuthenticationService.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[AuthenticationService]]></code>
+    </ClassMustBeFinal>
     <MissingConstructor>
       <code><![CDATA[$identity]]></code>
     </MissingConstructor>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getIdentity]]></code>
+      <code><![CDATA[getStorage]]></code>
+      <code><![CDATA[write]]></code>
+    </PossiblyUnusedMethod>
   </file>
 </files>

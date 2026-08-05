@@ -215,9 +215,8 @@ class OAuth2ServerFactoryTest extends TestCase
 
         // Now verify that storage settings are also merged in, which was the
         // original issue.
-        $storage = $server->getStorage('scope');
-        $r       = new ReflectionProperty($storage, 'config');
-        $r->setAccessible(true);
+        $storage       = $server->getStorage('scope');
+        $r             = new ReflectionProperty($storage, 'config');
         $storageConfig = $r->getValue($storage);
         foreach ($options['api-tools-oauth2']['storage_settings'] as $key => $value) {
             $this->assertArrayHasKey($key, $storageConfig);
