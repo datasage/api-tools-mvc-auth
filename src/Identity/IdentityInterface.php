@@ -11,5 +11,8 @@ interface IdentityInterface extends
     AclRoleInterface,
     RbacRoleInterface
 {
+    /**
+     * @return mixed
+     */
     public function getAuthenticationIdentity();
 }

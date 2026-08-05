@@ -1,9 +1,17 @@
 {
-    "ignore_php_platform_requirements": {
-      "8.4": true
+  "extensions": [
+    "pdo",
+    "pdo-sqlite"
+  ],
+  "exclude": [
+    {
+      "name": "Documentation Linting"
     },
-    "extensions": [
-        "pdo",
-        "pdo-sqlite"
-    ]
+    {
+      "name": "MkDocs Linting"
+    },
+    {
+      "name": "README Linting"
+    }
+  ]
 }
