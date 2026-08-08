@@ -111,7 +111,7 @@ class AuthenticationHttpAdapterFactoryTest extends TestCase
     #[DataProvider('validConfiguration')]
     public function testCreatesHttpAdapterWhenConfigurationIsValid(array $options, array $provides): void
     {
-        $authService = $this->getMockBuilder(AuthenticationService::class)->getMock();
+        $authService = $this->createStub(AuthenticationService::class);
         $this->services->expects($this->atLeastOnce())
             ->method('has')
             ->with($this->equalTo('authentication'))

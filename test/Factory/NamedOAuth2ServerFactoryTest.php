@@ -59,9 +59,7 @@ class NamedOAuth2ServerFactoryTest extends TestCase
             ],
         ]);
 
-        $oauth2StorageAdapter = $this->getMockBuilder(MemoryStorage::class)
-            ->disableOriginalConstructor(true)
-            ->getMock();
+        $oauth2StorageAdapter = $this->createStub(MemoryStorage::class);
 
         $services->setService(
             'LaminasTest\ApiTools\OAuth2\TestAsset\MockAdapter',

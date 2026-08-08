@@ -41,7 +41,7 @@ class HttpAdapterTest extends TestCase
         $this->event = new MvcAuthEvent(
             $mvcEvent,
             $this->authentication,
-            $this->getMockBuilder(AuthorizationInterface::class)->getMock()
+            $this->createStub(AuthorizationInterface::class)
         );
     }
 

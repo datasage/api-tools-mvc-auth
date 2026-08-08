@@ -13,7 +13,7 @@ use Laminas\Mvc\MvcEvent;
 use Laminas\Stdlib\Response;
 use LaminasTest\ApiTools\MvcAuth\TestAsset;
 use Override;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 class DefaultAuthenticationPostListenerTest extends TestCase
@@ -21,7 +21,7 @@ class DefaultAuthenticationPostListenerTest extends TestCase
     protected DefaultAuthenticationPostListener $listener;
     protected MvcAuthEvent $mvcAuthEvent;
     protected TestAsset\AuthenticationService $authentication;
-    protected MockObject $authorization;
+    protected Stub $authorization;
 
     #[Override]
     public function setUp(): void
@@ -37,7 +37,7 @@ class DefaultAuthenticationPostListenerTest extends TestCase
     public function createMvcAuthEvent(MvcEvent $mvcEvent): MvcAuthEvent
     {
         $this->authentication = new TestAsset\AuthenticationService();
-        $this->authorization  = $this->getMockBuilder(AuthorizationInterface::class)->getMock();
+        $this->authorization  = $this->createStub(AuthorizationInterface::class);
         return new MvcAuthEvent($mvcEvent, $this->authentication, $this->authorization);
     }
 

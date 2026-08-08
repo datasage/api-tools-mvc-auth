@@ -95,7 +95,7 @@ class AuthenticationAdapterDelegatorFactoryTest extends TestCase
         $this->services->setService('config', $config);
         $this->services->setService(
             'authentication',
-            $this->getMockBuilder(AuthenticationService::class)->getMock()
+            $this->createStub(AuthenticationService::class)
         );
 
         $factory = $this->factory;

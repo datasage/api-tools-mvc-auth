@@ -191,7 +191,7 @@ class HttpAdapterFactoryTest extends TestCase
             ->with($keyForServiceManager)
             ->willReturn(true);
 
-        $resolver = $this->getMockBuilder(ResolverInterface::class)->getMock();
+        $resolver = $this->createStub(ResolverInterface::class);
         $serviceManager
             ->expects($this->once())
             ->method('get')
@@ -223,7 +223,7 @@ class HttpAdapterFactoryTest extends TestCase
             ->with($keyForServiceManager)
             ->willReturn(true);
 
-        $resolver = $this->getMockBuilder(ResolverInterface::class)->getMock();
+        $resolver = $this->createStub(ResolverInterface::class);
         $serviceManager
             ->expects($this->once())
             ->method('get')
@@ -285,7 +285,7 @@ class HttpAdapterFactoryTest extends TestCase
 
         $serviceManager = $this->getMockBuilder(ServiceLocatorInterface::class)->getMock();
         $serviceManager
-            ->expects($this->any())
+            ->expects($this->atLeastOnce())
             ->method('has')
             ->with($missingKeyForServiceManager)
             ->willReturn(false);
