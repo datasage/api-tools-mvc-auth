@@ -95,9 +95,7 @@ class OAuth2ServerFactoryTest extends TestCase
         }
 
         $services    = $this->mockConfig(new ServiceManager());
-        $mongoClient = $this->getMockBuilder(MongoDB::class)
-            ->disableOriginalConstructor(true)
-            ->getMock();
+        $mongoClient = $this->createStub(MongoDB::class);
         $services->setService('MongoService', $mongoClient);
 
         $config = [

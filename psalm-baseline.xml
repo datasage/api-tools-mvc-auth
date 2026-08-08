@@ -1046,10 +1046,6 @@
     <ClassMustBeFinal>
       <code><![CDATA[AuthenticationOAuth2AdapterFactoryTest]]></code>
     </ClassMustBeFinal>
-    <InvalidArgument>
-      <code><![CDATA[$this->services]]></code>
-      <code><![CDATA[$this->services]]></code>
-    </InvalidArgument>
   </file>
   <file src="test/Factory/DefaultAuthenticationListenerFactoryTest.php">
     <ClassMustBeFinal>
@@ -1093,9 +1089,6 @@
       <code><![CDATA[$server]]></code>
       <code><![CDATA[$server]]></code>
     </MixedAssignment>
-    <TooManyArguments>
-      <code><![CDATA[disableOriginalConstructor]]></code>
-    </TooManyArguments>
   </file>
   <file src="test/Factory/OAuth2ServerFactoryTest.php">
     <ClassMustBeFinal>
@@ -1118,9 +1111,6 @@
       <code><![CDATA[! $enabled]]></code>
       <code><![CDATA[$enabled]]></code>
     </RedundantCondition>
-    <TooManyArguments>
-      <code><![CDATA[disableOriginalConstructor]]></code>
-    </TooManyArguments>
   </file>
   <file src="test/Identity/AuthenticatedIdentityTest.php">
     <ClassMustBeFinal>

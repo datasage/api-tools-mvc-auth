@@ -63,9 +63,7 @@ class OAuth2AdapterTest extends TestCase
             ->method('getResponse')
             ->willReturn($oauth2Response);
 
-        $mvcAuthEvent = $this->getMockBuilder(MvcAuthEvent::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $mvcAuthEvent = $this->createStub(MvcAuthEvent::class);
 
         $result = $this->adapter->authenticate(new HttpRequest(), new HttpResponse(), $mvcAuthEvent);
         $this->assertInstanceOf(HttpResponse::class, $result);
@@ -105,9 +103,7 @@ class OAuth2AdapterTest extends TestCase
             ->method('getResponse')
             ->willReturn($oauth2Response);
 
-        $mvcAuthEvent = $this->getMockBuilder(MvcAuthEvent::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $mvcAuthEvent = $this->createStub(MvcAuthEvent::class);
 
         $result = $this->adapter->authenticate(new HttpRequest(), new HttpResponse(), $mvcAuthEvent);
         $this->assertInstanceOf(HttpResponse::class, $result);
@@ -142,9 +138,7 @@ class OAuth2AdapterTest extends TestCase
             ->method('getResponse')
             ->willReturn($oauth2Response);
 
-        $mvcAuthEvent = $this->getMockBuilder(MvcAuthEvent::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $mvcAuthEvent = $this->createStub(MvcAuthEvent::class);
 
         $result = $this->adapter->authenticate(new HttpRequest(), new HttpResponse(), $mvcAuthEvent);
         $this->assertInstanceOf(GuestIdentity::class, $result);
@@ -189,9 +183,7 @@ class OAuth2AdapterTest extends TestCase
             ->method('getResponse')
             ->willReturn($oauth2Response);
 
-        $mvcAuthEvent = $this->getMockBuilder(MvcAuthEvent::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $mvcAuthEvent = $this->createStub(MvcAuthEvent::class);
 
         $result = $this->adapter->authenticate(new HttpRequest(), new HttpResponse(), $mvcAuthEvent);
         $this->assertInstanceOf(HttpResponse::class, $result);

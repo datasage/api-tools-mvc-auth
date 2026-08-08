@@ -22,8 +22,8 @@ class IdentityPluginTest extends TestCase
     {
         $this->event = $event = new MvcEvent();
 
-        $controller = $this->getMockBuilder(AbstractController::class)->getMock();
-        $controller->expects($this->any())
+        $controller = $this->createStub(AbstractController::class);
+        $controller
             ->method('getEvent')
             ->willReturnCallback(function () use ($event) {
                 return $event;

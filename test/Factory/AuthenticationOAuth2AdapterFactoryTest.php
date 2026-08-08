@@ -10,17 +10,17 @@ use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 class AuthenticationOAuth2AdapterFactoryTest extends TestCase
 {
-    protected MockObject $services;
+    protected ServiceLocatorInterface&Stub $services;
 
     #[Override]
     public function setUp(): void
     {
-        $this->services = $this->getMockBuilder(ServiceLocatorInterface::class)->getMock();
+        $this->services = $this->createStub(ServiceLocatorInterface::class);
     }
 
     /** @psalm-return array<string, array{0: array<array-key, mixed>}> */
@@ -50,6 +50,11 @@ class AuthenticationOAuth2AdapterFactoryTest extends TestCase
 
     public function testCreatesInstanceFromValidConfiguration(): void
     {
+        // This is the only test that asserts on how the factory queries the container,
+        // so it is the only one that needs a mock rather than the shared stub.
+        $services       = $this->createMock(ServiceLocatorInterface::class);
+        $this->services = $services;
+
         $config = [
             'adapter' => 'pdo',
             'storage' => [
@@ -58,7 +63,7 @@ class AuthenticationOAuth2AdapterFactoryTest extends TestCase
             ],
         ];
 
-        $this->services->expects($this->any())
+        $services->expects($this->atLeastOnce())
             ->method('get')
             ->with($this->stringContains('Config'))
             ->willReturn([

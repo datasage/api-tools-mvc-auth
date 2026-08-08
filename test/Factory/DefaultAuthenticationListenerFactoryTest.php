@@ -43,7 +43,7 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
 
     public function testCreatingOAuth2ServerFromStorageService(): void
     {
-        $adapter = $this->getMockBuilder(PdoStorage::class)->disableOriginalConstructor()->getMock();
+        $adapter = $this->createStub(PdoStorage::class);
 
         $this->services->setService('TestAdapter', $adapter);
         $this->services->setService('config', [
@@ -189,7 +189,7 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
 
     public function testCallingFactoryWithBasicSchemeAndHtpasswdValueReturnsListenerWithHttpAdapter(): void
     {
-        $authenticationService = $this->getMockBuilder(AuthenticationServiceInterface::class)->getMock();
+        $authenticationService = $this->createStub(AuthenticationServiceInterface::class);
         $this->services->setService('authentication', $authenticationService);
         $this->services->setService('config', [
             'api-tools-mvc-auth' => [
@@ -213,7 +213,7 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
 
     public function testCallingFactoryWithDigestSchemeAndHtdigestValueReturnsListenerWithHttpAdapter(): void
     {
-        $authenticationService = $this->getMockBuilder(AuthenticationServiceInterface::class)->getMock();
+        $authenticationService = $this->createStub(AuthenticationServiceInterface::class);
         $this->services->setService('authentication', $authenticationService);
         $this->services->setService('config', [
             'api-tools-mvc-auth' => [
@@ -237,7 +237,7 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
 
     public function testCallingFactoryWithCustomAuthenticationTypesReturnsListenerComposingThem(): void
     {
-        $authenticationService = $this->getMockBuilder(AuthenticationServiceInterface::class)->getMock();
+        $authenticationService = $this->createStub(AuthenticationServiceInterface::class);
         $this->services->setService('authentication', $authenticationService);
         $this->services->setService('config', [
             'api-tools-mvc-auth' => [
@@ -265,14 +265,14 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
     public function testFactoryWillUsePreconfiguredOAuth2ServerInstanceProvidedByLaminasOAuth2(): void
     {
         // Configure mock OAuth2 Server
-        $oauth2Server = $this->getMockBuilder(OAuth2Server::class)->disableOriginalConstructor()->getMock();
+        $oauth2Server = $this->createStub(OAuth2Server::class);
         // Wrap it in a factory
         $this->services->setService('Laminas\ApiTools\OAuth2\Service\OAuth2Server', function () use ($oauth2Server) {
             return $oauth2Server;
         });
 
         // Configure mock OAuth2 Server storage adapter
-        $adapter = $this->getMockBuilder(PdoStorage::class)->disableOriginalConstructor()->getMock();
+        $adapter = $this->createStub(PdoStorage::class);
 
         $this->services->setService('TestAdapter', $adapter);
         $this->services->setService('config', [
@@ -299,7 +299,7 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
 
     public function testCallingFactoryWithAuthenticationMapReturnsListenerComposingMap(): void
     {
-        $authenticationService = $this->getMockBuilder(AuthenticationServiceInterface::class)->getMock();
+        $authenticationService = $this->createStub(AuthenticationServiceInterface::class);
         $this->services->setService('authentication', $authenticationService);
         $this->services->setService('config', [
             'api-tools-mvc-auth' => [

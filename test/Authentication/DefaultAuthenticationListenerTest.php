@@ -27,7 +27,7 @@ use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 use function array_merge;
@@ -45,7 +45,7 @@ class DefaultAuthenticationListenerTest extends TestCase
     /** @var AuthenticationService */
     protected $authentication;
 
-    /** @var AuthorizationInterface&MockObject */
+    /** @var AuthorizationInterface&Stub */
     protected $authorization;
 
     /** @var array */
@@ -67,7 +67,7 @@ class DefaultAuthenticationListenerTest extends TestCase
         $this->authentication = new AuthenticationService(new NonPersistent());
 
         // authorization service
-        $this->authorization = $this->getMockBuilder(AuthorizationInterface::class)->getMock();
+        $this->authorization = $this->createStub(AuthorizationInterface::class);
 
         // event for mvc and mvc-auth
         $this->request  = new HttpRequest();
@@ -222,10 +222,10 @@ class DefaultAuthenticationListenerTest extends TestCase
             'username' => 'user',
             'realm'    => 'User Area',
         ]);
-        $httpAuth->expects($this->any())
+        $httpAuth
             ->method('getBasicResolver')
             ->willReturn(false);
-        $httpAuth->expects($this->any())
+        $httpAuth
             ->method('getDigestResolver')
             ->willReturn(true);
         $httpAuth->expects($this->once())
@@ -350,7 +350,7 @@ class DefaultAuthenticationListenerTest extends TestCase
             'username' => 'user',
             'realm'    => 'User Area',
         ]);
-        $httpAuth->expects($this->any())
+        $httpAuth
             ->method('getDigestResolver')
             ->willReturn(true);
         $httpAuth->expects($this->once())
@@ -526,10 +526,8 @@ class DefaultAuthenticationListenerTest extends TestCase
         callable $requestProvider
     ): void {
         $this->setupHttpBasicAuth();
-        // Minimal OAuth2 server mock, as we are not expecting any method calls
-        $server = $this->getMockBuilder(OAuth2Server::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        // Minimal OAuth2 server double, as we are not expecting any method calls
+        $server = $this->createStub(OAuth2Server::class);
         $this->listener->setOauth2Server($server);
 
         $routeMatch = $this->createRouteMatch(['controller' => $controller]);
@@ -545,16 +543,12 @@ class DefaultAuthenticationListenerTest extends TestCase
     #[Group('55')]
     public function testDoesNotPerformAuthenticationWhenMatchedControllerHasNoAuthMapEntryAndAuthSchemesAreDefined(): void
     {
-        // Minimal HTTP adapter mock, as we are not expecting any method calls
-        $httpAuth = $this->getMockBuilder(HttpAuth::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        // Minimal HTTP adapter double, as we are not expecting any method calls
+        $httpAuth = $this->createStub(HttpAuth::class);
         $this->listener->setHttpAdapter($httpAuth);
 
-        // Minimal OAuth2 server mock, as we are not expecting any method calls
-        $server = $this->getMockBuilder(OAuth2Server::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        // Minimal OAuth2 server double, as we are not expecting any method calls
+        $server = $this->createStub(OAuth2Server::class);
         $this->listener->setOauth2Server($server);
 
         $map = [
@@ -581,10 +575,8 @@ class DefaultAuthenticationListenerTest extends TestCase
     #[Group('55')]
     public function testDoesNotPerformAuthenticationWhenMatchedControllerHasAuthMapEntryNotInDefinedAuthSchemes(): void
     {
-        // Minimal HTTP adapter mock, as we are not expecting any method calls
-        $httpAuth = $this->getMockBuilder(HttpAuth::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        // Minimal HTTP adapter double, as we are not expecting any method calls
+        $httpAuth = $this->createStub(HttpAuth::class);
         $this->listener->setHttpAdapter($httpAuth);
 
         // No OAuth2 server, intentionally
@@ -694,17 +686,14 @@ class DefaultAuthenticationListenerTest extends TestCase
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
             ->willReturn($types);
-        $adapter->expects($this->any())
+        $adapter
             ->method('getTypeFromRequest')
-            ->with($this->equalTo($request))
             ->willReturn('oauth2');
-        $adapter->expects($this->any())
+        $adapter->expects($this->atLeastOnce())
             ->method('matches')
             ->with($this->equalTo('oauth2'))
             ->willReturn(true);
-        $expected = $this->getMockBuilder(AuthenticatedIdentity::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $expected = $this->createStub(AuthenticatedIdentity::class);
         $adapter->expects($this->once())
             ->method('authenticate')
             ->with($this->equalTo($request), $this->equalTo($this->response))
@@ -737,17 +726,14 @@ class DefaultAuthenticationListenerTest extends TestCase
         $adapter1->expects($this->atLeastOnce())
             ->method('provides')
             ->willReturn($types);
-        $adapter1->expects($this->any())
+        $adapter1->expects($this->atLeastOnce())
             ->method('matches')
             ->with($this->equalTo('oauth2'))
             ->willReturn(true);
-        $adapter1->expects($this->any())
+        $adapter1
             ->method('getTypeFromRequest')
-            ->with($this->equalTo($request))
             ->willReturn('oauth2');
-        $expected = $this->getMockBuilder(AuthenticatedIdentity::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $expected = $this->createStub(AuthenticatedIdentity::class);
         $adapter1->expects($this->once())
             ->method('authenticate')
             ->with($this->equalTo($request), $this->equalTo($this->response))
@@ -759,9 +745,8 @@ class DefaultAuthenticationListenerTest extends TestCase
         $adapter2->expects($this->atLeastOnce())
             ->method('provides')
             ->willReturn($types);
-        $adapter2->expects($this->any())
+        $adapter2
             ->method('getTypeFromRequest')
-            ->with($this->equalTo($request))
             ->willReturn('oauth2');
 
         $this->listener->attach($adapter1);
@@ -836,11 +821,10 @@ class DefaultAuthenticationListenerTest extends TestCase
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
             ->willReturn($types);
-        $adapter->expects($this->any())
+        $adapter
             ->method('getTypeFromRequest')
-            ->with($this->equalTo($request))
             ->willReturn('custom');
-        $adapter->expects($this->any())
+        $adapter->expects($this->atLeastOnce())
             ->method('matches')
             ->with($this->equalTo('custom'))
             ->willReturn(true);
