@@ -9,6 +9,7 @@ use Laminas\ApiTools\MvcAuth\Authorization\AclAuthorizationFactory as AclFactory
 use Laminas\Http\Request;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 use function array_key_exists;
@@ -38,6 +39,7 @@ class AclAuthorizationFactory implements FactoryInterface
      * @param null|array $options
      * @return AclAuthorization
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         $config = $this->getConfigFromContainer($container);
@@ -51,6 +53,7 @@ class AclAuthorizationFactory implements FactoryInterface
      *
      * @return AclAuthorization
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, AclAuthorization::class);

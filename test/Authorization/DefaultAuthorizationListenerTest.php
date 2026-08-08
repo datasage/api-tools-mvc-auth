@@ -19,6 +19,7 @@ use Laminas\Stdlib\Request;
 use Laminas\Stdlib\Response;
 use LaminasTest\ApiTools\MvcAuth\RouteMatchFactoryTrait;
 use LaminasTest\ApiTools\MvcAuth\TestAsset\AuthenticationService;
+use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
@@ -43,6 +44,7 @@ class DefaultAuthorizationListenerTest extends TestCase
     /** @var MvcAuthEvent */
     protected $mvcAuthEvent;
 
+    #[Override]
     public function setUp(): void
     {
         // authentication service

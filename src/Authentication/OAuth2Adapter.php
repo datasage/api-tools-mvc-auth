@@ -11,6 +11,7 @@ use Laminas\Http\Response;
 use OAuth2\Request as OAuth2Request;
 use OAuth2\Response as OAuth2Response;
 use OAuth2\Server as OAuth2Server;
+use Override;
 
 use function in_array;
 use function is_array;
@@ -64,6 +65,7 @@ class OAuth2Adapter extends AbstractAdapter
     /**
      * @return array Array of types this adapter can handle.
      */
+    #[Override]
     public function provides()
     {
         return $this->providesTypes;
@@ -76,6 +78,7 @@ class OAuth2Adapter extends AbstractAdapter
      * @param string $type
      * @return bool
      */
+    #[Override]
     public function matches($type)
     {
         return in_array($type, $this->providesTypes, true);
@@ -86,6 +89,7 @@ class OAuth2Adapter extends AbstractAdapter
      *
      * @return false|string
      */
+    #[Override]
     public function getTypeFromRequest(Request $request)
     {
         $type = parent::getTypeFromRequest($request);
@@ -117,6 +121,7 @@ class OAuth2Adapter extends AbstractAdapter
      *
      * @return void
      */
+    #[Override]
     public function preAuth(Request $request, Response $response)
     {
     }
@@ -126,6 +131,7 @@ class OAuth2Adapter extends AbstractAdapter
      *
      * @return Identity\AuthenticatedIdentity|Identity\GuestIdentity|Response
      */
+    #[Override]
     public function authenticate(Request $request, Response $response, MvcAuthEvent $mvcAuthEvent)
     {
         $oauth2request = new OAuth2Request(

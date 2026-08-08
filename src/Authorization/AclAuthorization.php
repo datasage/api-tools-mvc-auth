@@ -6,6 +6,7 @@ namespace Laminas\ApiTools\MvcAuth\Authorization;
 
 use Laminas\ApiTools\MvcAuth\Identity\IdentityInterface;
 use Laminas\Permissions\Acl\Acl;
+use Override;
 
 /**
  * Authorization implementation that uses the ACL component
@@ -21,6 +22,7 @@ class AclAuthorization extends Acl implements AuthorizationInterface
      * @param mixed $privilege
      * @return bool
      */
+    #[Override]
     public function isAuthorized(IdentityInterface $identity, $resource, $privilege)
     {
         if (null !== $resource && (! $this->hasResource($resource))) {

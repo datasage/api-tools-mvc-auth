@@ -7,6 +7,7 @@ namespace Laminas\ApiTools\MvcAuth\Factory;
 use Laminas\Authentication\Adapter\Http as HttpAuth;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -21,6 +22,7 @@ class DefaultAuthHttpAdapterFactory implements FactoryInterface
      * @param null|array $options
      * @return HttpAuth|false
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         // If no configuration present, nothing to create
@@ -45,6 +47,7 @@ class DefaultAuthHttpAdapterFactory implements FactoryInterface
      *
      * @return HttpAuth|false
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, HttpAuth::class);

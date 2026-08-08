@@ -11,6 +11,7 @@ use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
 use Laminas\ApiTools\MvcAuth\Factory\AuthenticationAdapterDelegatorFactory;
 use Laminas\Authentication\AuthenticationService;
 use Laminas\ServiceManager\ServiceManager;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class AuthenticationAdapterDelegatorFactoryTest extends TestCase
@@ -20,6 +21,7 @@ class AuthenticationAdapterDelegatorFactoryTest extends TestCase
     protected DefaultAuthenticationListener $listener;
     protected Closure $callback;
 
+    #[Override]
     public function setUp(): void
     {
         // Actual service manager instance, as multiple services may be

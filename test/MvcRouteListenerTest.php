@@ -10,6 +10,7 @@ use Laminas\Authentication\AuthenticationService;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\Test\EventListenerIntrospectionTrait;
 use Laminas\Mvc\MvcEvent;
+use Override;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -29,6 +30,7 @@ class MvcRouteListenerTest extends TestCase
     /** @var MvcRouteListener */
     private $listener;
 
+    #[Override]
     public function setUp(): void
     {
         $this->events = new EventManager();

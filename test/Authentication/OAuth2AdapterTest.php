@@ -13,6 +13,8 @@ use Laminas\Http\Response as HttpResponse;
 use OAuth2\Request as OAuth2Request;
 use OAuth2\Response as OAuth2Response;
 use OAuth2\Server as OAuth2Server;
+use Override;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -21,15 +23,14 @@ class OAuth2AdapterTest extends TestCase
     protected OAuth2Adapter $adapter;
     protected MockObject $oauthServer;
 
+    #[Override]
     public function setUp(): void
     {
         $this->oauthServer = $this->getMockBuilder(OAuth2Server::class)->getMock();
         $this->adapter     = new OAuth2Adapter($this->oauthServer);
     }
 
-    /**
-     * @group 83
-     */
+    #[Group('83')]
     public function testReturns401ResponseWhenErrorOccursDuringValidation(): void
     {
         $oauth2Response = $this->getMockBuilder(OAuth2Response::class)
@@ -71,9 +72,7 @@ class OAuth2AdapterTest extends TestCase
         $this->assertEquals(401, $result->getStatusCode());
     }
 
-    /**
-     * @group 83
-     */
+    #[Group('83')]
     public function testReturns403ResponseWhenInvalidScopeDetected(): void
     {
         $oauth2Response = $this->getMockBuilder(OAuth2Response::class)
@@ -115,9 +114,7 @@ class OAuth2AdapterTest extends TestCase
         $this->assertEquals(403, $result->getStatusCode());
     }
 
-    /**
-     * @group 83
-     */
+    #[Group('83')]
     public function testReturnsGuestIdentityIfOAuth2ResponseIsNotAnError(): void
     {
         $oauth2Response = $this->getMockBuilder(OAuth2Response::class)
@@ -153,9 +150,7 @@ class OAuth2AdapterTest extends TestCase
         $this->assertInstanceOf(GuestIdentity::class, $result);
     }
 
-    /**
-     * @group 83
-     */
+    #[Group('83')]
     public function testErrorResponseIncludesOAuth2ResponseHeaders(): void
     {
         $expectedHeaders = [

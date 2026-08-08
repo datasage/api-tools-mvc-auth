@@ -15,6 +15,7 @@ use Laminas\Authentication\Storage\NonPersistent;
 use Laminas\Http\Request as HttpRequest;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class HttpAdapterTest extends TestCase
@@ -24,6 +25,7 @@ class HttpAdapterTest extends TestCase
     protected HttpResponse $response;
     protected MvcAuthEvent $event;
 
+    #[Override]
     public function setUp(): void
     {
         // authentication service

@@ -11,6 +11,8 @@ use MongoDB;
 use OAuth2\GrantType;
 use OAuth2\OpenID\GrantType\AuthorizationCode as OpenIDAuthorizationCodeGrantType;
 use OAuth2\Server as OAuth2Server;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
@@ -146,10 +148,8 @@ class OAuth2ServerFactoryTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider disableGrantType
-     * @group 77
-     */
+    #[DataProvider('disableGrantType')]
+    #[Group('77')]
     public function testServerCreatedHasDefaultGrantTypesAsDefinedByOAuth2Module(string $disable): void
     {
         $options                                              = $this->getOAuth2Options();

@@ -8,6 +8,7 @@ use Laminas\ApiTools\MvcAuth\Identity\AuthenticatedIdentity;
 use Laminas\ApiTools\MvcAuth\Identity\IdentityInterface;
 use Laminas\Permissions\Acl\Role\RoleInterface as AclRoleInterface;
 use Laminas\Permissions\Rbac\RoleInterface as RbacRoleInterface;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class AuthenticatedIdentityTest extends TestCase
@@ -15,6 +16,7 @@ class AuthenticatedIdentityTest extends TestCase
     protected object $authIdentity;
     protected AuthenticatedIdentity $identity;
 
+    #[Override]
     public function setUp(): void
     {
         $this->authIdentity = (object) [

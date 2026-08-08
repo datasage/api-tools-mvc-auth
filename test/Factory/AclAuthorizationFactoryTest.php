@@ -7,6 +7,8 @@ namespace LaminasTest\ApiTools\MvcAuth\Factory;
 use Laminas\ApiTools\MvcAuth\Authorization\AclAuthorization;
 use Laminas\ApiTools\MvcAuth\Factory\AclAuthorizationFactory;
 use Laminas\ServiceManager\ServiceManager;
+use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function array_key_exists;
@@ -20,6 +22,7 @@ class AclAuthorizationFactoryTest extends TestCase
     /** @var ServiceManager */
     private $services;
 
+    #[Override]
     public function setUp(): void
     {
         $this->services = new ServiceManager();
@@ -72,9 +75,7 @@ class AclAuthorizationFactoryTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider whitelistAclProvider
-     */
+    #[DataProvider('whitelistAclProvider')]
     public function testCanCreateWhitelistAcl(array $config): void
     {
         $this->services->setService('config', $config);
