@@ -6,6 +6,7 @@ namespace Laminas\ApiTools\MvcAuth\Factory;
 
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 class ApacheResolverFactory implements FactoryInterface
@@ -19,6 +20,7 @@ class ApacheResolverFactory implements FactoryInterface
      * @param null|array $options
      * @return false|ApacheResolver
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         if (false === $container->has('config')) {
@@ -43,6 +45,7 @@ class ApacheResolverFactory implements FactoryInterface
      *
      * @return false|ApacheResolver
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, ApacheResolver::class);

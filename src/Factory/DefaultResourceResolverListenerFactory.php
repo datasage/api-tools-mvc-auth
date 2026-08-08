@@ -8,6 +8,7 @@ use Laminas\ApiTools\MvcAuth\Authorization\DefaultResourceResolverListener;
 use Laminas\Http\Request;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -31,6 +32,7 @@ class DefaultResourceResolverListenerFactory implements FactoryInterface
      * @param null|array         $options
      * @return DefaultResourceResolverListener
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         $config = $container->has('config') ? $container->get('config') : [];
@@ -47,6 +49,7 @@ class DefaultResourceResolverListenerFactory implements FactoryInterface
      *
      * @return DefaultResourceResolverListener
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, DefaultResourceResolverListener::class);

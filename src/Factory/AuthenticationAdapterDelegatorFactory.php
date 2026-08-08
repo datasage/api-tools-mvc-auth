@@ -9,6 +9,7 @@ use Laminas\ApiTools\MvcAuth\Authentication\HttpAdapter;
 use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
 use Laminas\ServiceManager\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 use function is_array;
@@ -25,6 +26,7 @@ class AuthenticationAdapterDelegatorFactory implements DelegatorFactoryInterface
      * @param  null|array         $options
      * @return DefaultAuthenticationListener
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         $listener = $callback();
@@ -54,6 +56,7 @@ class AuthenticationAdapterDelegatorFactory implements DelegatorFactoryInterface
      * @param callable $callback
      * @return DefaultAuthenticationListener
      */
+    #[Override]
     public function createDelegatorWithName(ServiceLocatorInterface $container, $name, $requestedName, $callback)
     {
         return $this($container, $requestedName, $callback);

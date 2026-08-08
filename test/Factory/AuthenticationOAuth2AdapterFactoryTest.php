@@ -8,6 +8,8 @@ use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
 use Laminas\ApiTools\MvcAuth\Factory\AuthenticationOAuth2AdapterFactory;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +17,7 @@ class AuthenticationOAuth2AdapterFactoryTest extends TestCase
 {
     protected MockObject $services;
 
+    #[Override]
     public function setUp(): void
     {
         $this->services = $this->getMockBuilder(ServiceLocatorInterface::class)->getMock();
@@ -35,9 +38,9 @@ class AuthenticationOAuth2AdapterFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidConfiguration
      * @psalm-param array<array-key, mixed> $config
      */
+    #[DataProvider('invalidConfiguration')]
     public function testRaisesExceptionForMissingOrInvalidStorage(array $config): void
     {
         $this->expectException(ServiceNotCreatedException::class);
@@ -58,7 +61,7 @@ class AuthenticationOAuth2AdapterFactoryTest extends TestCase
         $this->services->expects($this->any())
             ->method('get')
             ->with($this->stringContains('Config'))
-            ->will($this->returnValue([
+            ->willReturn([
                 'api-tools-oauth2' => [
                     'grant_types'                => [
                         'client_credentials' => true,
@@ -69,7 +72,7 @@ class AuthenticationOAuth2AdapterFactoryTest extends TestCase
                     ],
                     'api_problem_error_response' => true,
                 ],
-            ]));
+            ]);
 
         $adapter = AuthenticationOAuth2AdapterFactory::factory('foo', $config, $this->services);
         $this->assertInstanceOf(OAuth2Adapter::class, $adapter);

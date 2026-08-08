@@ -9,6 +9,7 @@ use Laminas\ApiTools\MvcAuth\Identity\GuestIdentity;
 use Laminas\ApiTools\MvcAuth\Identity\IdentityPlugin;
 use Laminas\Mvc\Controller\AbstractController;
 use Laminas\Mvc\MvcEvent;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class IdentityPluginTest extends TestCase
@@ -16,6 +17,7 @@ class IdentityPluginTest extends TestCase
     protected IdentityPlugin $plugin;
     protected MvcEvent $event;
 
+    #[Override]
     public function setUp(): void
     {
         $this->event = $event = new MvcEvent();
@@ -23,9 +25,9 @@ class IdentityPluginTest extends TestCase
         $controller = $this->getMockBuilder(AbstractController::class)->getMock();
         $controller->expects($this->any())
             ->method('getEvent')
-            ->will($this->returnCallback(function () use ($event) {
+            ->willReturnCallback(function () use ($event) {
                 return $event;
-            }));
+            });
 
         $this->plugin = new IdentityPlugin();
         $this->plugin->setController($controller);

@@ -10,6 +10,8 @@ use Laminas\Authentication\AuthenticationService;
 use Laminas\Authentication\Result;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Permissions\Acl\Acl;
+use Override;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 class MvcAuthEventTest extends TestCase
@@ -17,6 +19,7 @@ class MvcAuthEventTest extends TestCase
     /** @var MvcAuthEvent */
     protected $mvcAuthEvent;
 
+    #[Override]
     public function setUp(): void
     {
         $mvcEvent           = new MvcEvent();
@@ -75,9 +78,7 @@ class MvcAuthEventTest extends TestCase
         $this->assertNull($this->mvcAuthEvent->getResource());
     }
 
-    /**
-     * @depends testResourceStringIsNullByDefault
-     */
+    #[Depends('testResourceStringIsNullByDefault')]
     public function testResourceStringIsMutable(): void
     {
         $this->mvcAuthEvent->setResource('foo');
@@ -89,9 +90,7 @@ class MvcAuthEventTest extends TestCase
         $this->assertFalse($this->mvcAuthEvent->isAuthorized());
     }
 
-    /**
-     * @depends testAuthorizedFlagIsFalseByDefault
-     */
+    #[Depends('testAuthorizedFlagIsFalseByDefault')]
     public function testAuthorizedFlagIsMutable(): void
     {
         $this->mvcAuthEvent->setIsAuthorized(true);

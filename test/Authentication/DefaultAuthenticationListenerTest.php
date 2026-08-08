@@ -23,6 +23,10 @@ use Laminas\Stdlib\Request;
 use LaminasTest\ApiTools\MvcAuth\RouteMatchFactoryTrait;
 use OAuth2\Request as OAuth2Request;
 use OAuth2\Server as OAuth2Server;
+use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -56,6 +60,7 @@ class DefaultAuthenticationListenerTest extends TestCase
     /** @var Config */
     protected $configuration;
 
+    #[Override]
     public function setUp(): void
     {
         // authentication service
@@ -182,9 +187,9 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @depends testInvokeForBasicAuthSetsIdentityWhenValid
      * @psalm-param array{identity: array, mvc_event: MvcEvent} $params
      */
+    #[Depends('testInvokeForBasicAuthSetsIdentityWhenValid')]
     public function testListenerInjectsDiscoveredIdentityIntoMvcEvent(array $params): void
     {
         $identity = $params['identity'];
@@ -195,9 +200,9 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @depends testInvokeForBasicAuthSetsGuestIdentityWhenValid
      * @psalm-param array{identity: array, mvc_event: MvcEvent} $params
      */
+    #[Depends('testInvokeForBasicAuthSetsGuestIdentityWhenValid')]
     public function testListenerInjectsGuestIdentityIntoMvcEvent(array $params): void
     {
         $identity = $params['identity'];
@@ -207,9 +212,7 @@ class DefaultAuthenticationListenerTest extends TestCase
         $this->assertSame($identity, $received);
     }
 
-    /**
-     * @group 23
-     */
+    #[Group('23')]
     public function testListenerPullsDigestUsernameFromAuthenticationIdentityWhenCreatingAuthenticatedIdentityInstance(): void
     {
         $httpAuth       = $this->getMockBuilder(HttpAuth::class)
@@ -221,13 +224,13 @@ class DefaultAuthenticationListenerTest extends TestCase
         ]);
         $httpAuth->expects($this->any())
             ->method('getBasicResolver')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $httpAuth->expects($this->any())
             ->method('getDigestResolver')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $httpAuth->expects($this->once())
             ->method('authenticate')
-            ->will($this->returnValue($resultIdentity));
+            ->willReturn($resultIdentity);
 
         $this->listener->setHttpAdapter($httpAuth);
         $this->request->getHeaders()->addHeaderLine(
@@ -286,9 +289,7 @@ class DefaultAuthenticationListenerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requestMethodsWithRequestBodies
-     */
+    #[DataProvider('requestMethodsWithRequestBodies')]
     public function testBodyAccessTokenProxiesOAuthServer(string $method): void
     {
         $token = [
@@ -313,7 +314,7 @@ class DefaultAuthenticationListenerTest extends TestCase
 
         $server->expects($this->atLeastOnce())
             ->method('getAccessTokenData')
-            ->will($this->returnValue($token));
+            ->willReturn($token);
 
         $this->listener->setOauth2Server($server);
     }
@@ -351,10 +352,10 @@ class DefaultAuthenticationListenerTest extends TestCase
         ]);
         $httpAuth->expects($this->any())
             ->method('getDigestResolver')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $httpAuth->expects($this->once())
             ->method('authenticate')
-            ->will($this->returnValue($resultIdentity));
+            ->willReturn($resultIdentity);
 
         $this->listener->setHttpAdapter($httpAuth);
     }
@@ -442,10 +443,10 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @dataProvider mappedAuthenticationControllers
-     * @group 55
      * @psalm-param callable():HttpRequest $requestProvider
      */
+    #[DataProvider('mappedAuthenticationControllers')]
+    #[Group('55')]
     public function testAuthenticationUsesMapByToChooseAuthenticationMethod(
         string $controller,
         string $authType,
@@ -457,10 +458,10 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @dataProvider mappedAuthenticationControllers
-     * @group 55
      * @psalm-param callable():HttpRequest $requestProvider
      */
+    #[DataProvider('mappedAuthenticationControllers')]
+    #[Group('55')]
     public function testGuestIdentityIsReturnedWhenNoAuthSchemesArePresent(
         string $controller,
         string $authType,
@@ -482,10 +483,10 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @dataProvider mappedAuthenticationControllers
-     * @group 55
      * @psalm-param callable():HttpRequest $requestProvider
      */
+    #[DataProvider('mappedAuthenticationControllers')]
+    #[Group('55')]
     public function testUsesDefaultAuthenticationWhenNoAuthMapIsPresent(
         string $controller,
         string $authType,
@@ -515,10 +516,10 @@ class DefaultAuthenticationListenerTest extends TestCase
     }
 
     /**
-     * @dataProvider mappedAuthenticationControllers
-     * @group 55
      * @psalm-param callable():HttpRequest $requestProvider
      */
+    #[DataProvider('mappedAuthenticationControllers')]
+    #[Group('55')]
     public function testDoesNotPerformAuthenticationWhenNoAuthMapPresentAndMultipleAuthSchemesAreDefined(
         string $controller,
         string $authType,
@@ -541,9 +542,7 @@ class DefaultAuthenticationListenerTest extends TestCase
         $this->assertInstanceOf(GuestIdentity::class, $identity);
     }
 
-    /**
-     * @group 55
-     */
+    #[Group('55')]
     public function testDoesNotPerformAuthenticationWhenMatchedControllerHasNoAuthMapEntryAndAuthSchemesAreDefined(): void
     {
         // Minimal HTTP adapter mock, as we are not expecting any method calls
@@ -579,9 +578,7 @@ class DefaultAuthenticationListenerTest extends TestCase
         $this->assertInstanceOf(GuestIdentity::class, $identity);
     }
 
-    /**
-     * @group 55
-     */
+    #[Group('55')]
     public function testDoesNotPerformAuthenticationWhenMatchedControllerHasAuthMapEntryNotInDefinedAuthSchemes(): void
     {
         // Minimal HTTP adapter mock, as we are not expecting any method calls
@@ -621,7 +618,7 @@ class DefaultAuthenticationListenerTest extends TestCase
             ->getMock();
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $this->listener->attach($adapter);
     }
 
@@ -633,7 +630,7 @@ class DefaultAuthenticationListenerTest extends TestCase
             ->getMock();
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $this->listener->attach($adapter);
         $this->assertEquals($types, $this->listener->getAuthenticationTypes());
     }
@@ -659,15 +656,15 @@ class DefaultAuthenticationListenerTest extends TestCase
             ->getMock();
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $adapter->expects($this->once())
             ->method('getTypeFromRequest')
             ->with($this->equalTo($request))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $adapter->expects($this->once())
             ->method('preAuth')
             ->with($this->equalTo($request), $this->equalTo($this->response))
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $this->listener->attach($adapter);
 
@@ -696,22 +693,22 @@ class DefaultAuthenticationListenerTest extends TestCase
             ->getMock();
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $adapter->expects($this->any())
             ->method('getTypeFromRequest')
             ->with($this->equalTo($request))
-            ->will($this->returnValue('oauth2'));
+            ->willReturn('oauth2');
         $adapter->expects($this->any())
             ->method('matches')
             ->with($this->equalTo('oauth2'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $expected = $this->getMockBuilder(AuthenticatedIdentity::class)
             ->disableOriginalConstructor()
             ->getMock();
         $adapter->expects($this->once())
             ->method('authenticate')
             ->with($this->equalTo($request), $this->equalTo($this->response))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
         $this->listener->attach($adapter);
 
         $identity = $this->listener->__invoke($this->mvcAuthEvent);
@@ -739,33 +736,33 @@ class DefaultAuthenticationListenerTest extends TestCase
             ->getMock();
         $adapter1->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $adapter1->expects($this->any())
             ->method('matches')
             ->with($this->equalTo('oauth2'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $adapter1->expects($this->any())
             ->method('getTypeFromRequest')
             ->with($this->equalTo($request))
-            ->will($this->returnValue('oauth2'));
+            ->willReturn('oauth2');
         $expected = $this->getMockBuilder(AuthenticatedIdentity::class)
             ->disableOriginalConstructor()
             ->getMock();
         $adapter1->expects($this->once())
             ->method('authenticate')
             ->with($this->equalTo($request), $this->equalTo($this->response))
-            ->will($this->returnValue($expected));
+            ->willReturn($expected);
 
         $adapter2 = $this->getMockBuilder(AdapterInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
         $adapter2->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $adapter2->expects($this->any())
             ->method('getTypeFromRequest')
             ->with($this->equalTo($request))
-            ->will($this->returnValue('oauth2'));
+            ->willReturn('oauth2');
 
         $this->listener->attach($adapter1);
         $this->listener->attach($adapter2);
@@ -792,7 +789,7 @@ class DefaultAuthenticationListenerTest extends TestCase
             ->getMock();
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $this->listener->attach($adapter);
 
         // Order of merge matters, unfortunately
@@ -818,9 +815,7 @@ class DefaultAuthenticationListenerTest extends TestCase
         $this->listener->__invoke($this->mvcAuthEvent);
     }
 
-    /**
-     * @group 83
-     */
+    #[Group('83')]
     public function testAllowsAdaptersToReturnResponsesAndReturnsThemDirectly(): void
     {
         $map = [
@@ -840,15 +835,15 @@ class DefaultAuthenticationListenerTest extends TestCase
             ->getMock();
         $adapter->expects($this->atLeastOnce())
             ->method('provides')
-            ->will($this->returnValue($types));
+            ->willReturn($types);
         $adapter->expects($this->any())
             ->method('getTypeFromRequest')
             ->with($this->equalTo($request))
-            ->will($this->returnValue('custom'));
+            ->willReturn('custom');
         $adapter->expects($this->any())
             ->method('matches')
             ->with($this->equalTo('custom'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $response = new HttpResponse();
         $response->setStatusCode(401);
@@ -856,7 +851,7 @@ class DefaultAuthenticationListenerTest extends TestCase
         $adapter->expects($this->once())
             ->method('authenticate')
             ->with($this->equalTo($request), $this->equalTo($this->response))
-            ->will($this->returnValue($response));
+            ->willReturn($response);
         $this->listener->attach($adapter);
 
         $result = $this->listener->__invoke($this->mvcAuthEvent);

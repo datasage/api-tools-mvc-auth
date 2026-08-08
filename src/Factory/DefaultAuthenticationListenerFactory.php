@@ -10,6 +10,7 @@ use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
 use Laminas\ApiTools\OAuth2\Factory\OAuth2ServerFactory as LaminasOAuth2ServerFactory;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
 
@@ -29,6 +30,7 @@ class DefaultAuthenticationListenerFactory implements FactoryInterface
      * @param null|array         $options
      * @return DefaultAuthenticationListener
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         $listener = new DefaultAuthenticationListener();
@@ -60,6 +62,7 @@ class DefaultAuthenticationListenerFactory implements FactoryInterface
      *
      * @return DefaultAuthenticationListener
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, DefaultAuthenticationListener::class);

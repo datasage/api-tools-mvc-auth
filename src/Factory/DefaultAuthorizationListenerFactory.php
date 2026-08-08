@@ -9,6 +9,7 @@ use Laminas\ApiTools\MvcAuth\Authorization\DefaultAuthorizationListener;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 use function sprintf;
@@ -26,6 +27,7 @@ class DefaultAuthorizationListenerFactory implements FactoryInterface
      * @return DefaultAuthorizationListener
      * @throws ServiceNotCreatedException If the AuthorizationInterface service is missing.
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         if (
@@ -53,6 +55,7 @@ class DefaultAuthorizationListenerFactory implements FactoryInterface
      *
      * @return DefaultAuthorizationListener
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, DefaultAuthorizationListener::class);

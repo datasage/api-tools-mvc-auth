@@ -9,6 +9,8 @@ use Laminas\ApiTools\MvcAuth\Factory\AuthenticationHttpAdapterFactory;
 use Laminas\Authentication\AuthenticationService;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -16,6 +18,7 @@ class AuthenticationHttpAdapterFactoryTest extends TestCase
 {
     protected MockObject $services;
 
+    #[Override]
     public function setUp(): void
     {
         $this->services = $this->getMockBuilder(ServiceLocatorInterface::class)->getMock();
@@ -26,7 +29,7 @@ class AuthenticationHttpAdapterFactoryTest extends TestCase
         $this->services->expects($this->atLeastOnce())
             ->method('has')
             ->with($this->equalTo('authentication'))
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $this->expectException(ServiceNotCreatedException::class);
         $this->expectExceptionMessage('missing AuthenticationService');
@@ -48,15 +51,15 @@ class AuthenticationHttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidConfiguration
      * @psalm-param array<string, mixed> $config
      */
+    #[DataProvider('invalidConfiguration')]
     public function testRaisesExceptionIfMissingConfigurationOptions(array $config): void
     {
         $this->services->expects($this->atLeastOnce())
             ->method('has')
             ->with($this->equalTo('authentication'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $this->expectException(ServiceNotCreatedException::class);
         $this->expectExceptionMessage('missing options');
@@ -102,21 +105,21 @@ class AuthenticationHttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider validConfiguration
      * @psalm-param array<string, mixed> $options
      * @psalm-param string[] $provides
      */
+    #[DataProvider('validConfiguration')]
     public function testCreatesHttpAdapterWhenConfigurationIsValid(array $options, array $provides): void
     {
         $authService = $this->getMockBuilder(AuthenticationService::class)->getMock();
         $this->services->expects($this->atLeastOnce())
             ->method('has')
             ->with($this->equalTo('authentication'))
-            ->will($this->returnValue(true));
+            ->willReturn(true);
         $this->services->expects($this->atLeastOnce())
             ->method('get')
             ->with($this->equalTo('authentication'))
-            ->will($this->returnValue($authService));
+            ->willReturn($authService);
 
         $adapter = AuthenticationHttpAdapterFactory::factory('foo', ['options' => $options], $this->services);
         $this->assertInstanceOf(HttpAdapter::class, $adapter);

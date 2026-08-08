@@ -8,6 +8,7 @@ use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
 use Laminas\ApiTools\MvcAuth\Factory\NamedOAuth2ServerFactory;
 use Laminas\ServiceManager\ServiceManager;
 use OAuth2\Storage\Memory as MemoryStorage;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 class NamedOAuth2ServerFactoryTest extends TestCase
@@ -15,6 +16,7 @@ class NamedOAuth2ServerFactoryTest extends TestCase
     protected ServiceManager $services;
     protected NamedOAuth2ServerFactory $factory;
 
+    #[Override]
     public function setUp(): void
     {
         $this->services = $this->setUpConfig(new ServiceManager());

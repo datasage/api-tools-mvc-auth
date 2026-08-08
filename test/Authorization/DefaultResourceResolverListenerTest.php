@@ -12,6 +12,7 @@ use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use LaminasTest\ApiTools\MvcAuth\RouteMatchFactoryTrait;
 use LaminasTest\ApiTools\MvcAuth\TestAsset;
+use Override;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -25,6 +26,7 @@ class DefaultResourceResolverListenerTest extends TestCase
     protected TestAsset\AuthenticationService $authentication;
     protected MockObject $authorization;
 
+    #[Override]
     public function setUp(): void
     {
         $routeMatch = $this->createRouteMatch([]);

@@ -12,6 +12,7 @@ use Laminas\Http\Response as HttpResponse;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Stdlib\Response;
 use LaminasTest\ApiTools\MvcAuth\TestAsset;
+use Override;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -22,6 +23,7 @@ class DefaultAuthenticationPostListenerTest extends TestCase
     protected TestAsset\AuthenticationService $authentication;
     protected MockObject $authorization;
 
+    #[Override]
     public function setUp(): void
     {
         $response = new HttpResponse();

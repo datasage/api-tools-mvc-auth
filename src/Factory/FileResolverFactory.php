@@ -7,6 +7,7 @@ namespace Laminas\ApiTools\MvcAuth\Factory;
 use Laminas\Authentication\Adapter\Http\FileResolver;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 class FileResolverFactory implements FactoryInterface
@@ -18,6 +19,7 @@ class FileResolverFactory implements FactoryInterface
      * @param null|array         $options
      * @return false|FileResolver
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         if (! $container->has('config')) {
@@ -42,6 +44,7 @@ class FileResolverFactory implements FactoryInterface
      *
      * @return false|FileResolver
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, FileResolver::class);

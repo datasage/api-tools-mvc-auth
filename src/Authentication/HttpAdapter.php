@@ -10,6 +10,7 @@ use Laminas\Authentication\Adapter\Http as HttpAuth;
 use Laminas\Authentication\AuthenticationServiceInterface;
 use Laminas\Http\Request;
 use Laminas\Http\Response;
+use Override;
 
 use function array_shift;
 use function in_array;
@@ -64,6 +65,7 @@ class HttpAdapter extends AbstractAdapter
      *
      * @return array Array of types this adapter can handle.
      */
+    #[Override]
     public function provides()
     {
         $providesBase = $this->providesBase ? $this->providesBase . '-' : '';
@@ -86,6 +88,7 @@ class HttpAdapter extends AbstractAdapter
      * @param string $type
      * @return bool
      */
+    #[Override]
     public function matches($type)
     {
         return $this->providesBase === $type || in_array($type, $this->provides(), true);
@@ -98,6 +101,7 @@ class HttpAdapter extends AbstractAdapter
      *
      * @return void
      */
+    #[Override]
     public function preAuth(Request $request, Response $response)
     {
         $this->httpAuth->setRequest($request);
@@ -111,6 +115,7 @@ class HttpAdapter extends AbstractAdapter
      * @return false|Identity\IdentityInterface False on failure, IdentityInterface
      *     otherwise
      */
+    #[Override]
     public function authenticate(Request $request, Response $response, MvcAuthEvent $mvcAuthEvent)
     {
         if (! $request->getHeader('Authorization', false)) {

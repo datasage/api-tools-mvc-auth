@@ -11,6 +11,7 @@ use Laminas\EventManager\EventManagerInterface;
 use Laminas\Http\Request as HttpRequest;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Stdlib\ResponseInterface as Response;
+use Override;
 
 use function is_bool;
 
@@ -42,6 +43,7 @@ class MvcRouteListener extends AbstractListenerAggregate
      *
      * @param int $priority
      */
+    #[Override]
     public function attach(EventManagerInterface $events, $priority = 1)
     {
         $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, [$this, 'authentication'], -50);

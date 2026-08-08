@@ -8,6 +8,7 @@ use Laminas\Authentication\AuthenticationService;
 use Laminas\Authentication\Storage\NonPersistent;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
 use Psr\Container\ContainerInterface;
 
 class AuthenticationServiceFactory implements FactoryInterface
@@ -19,6 +20,7 @@ class AuthenticationServiceFactory implements FactoryInterface
      * @param null|array $options
      * @return AuthenticationService
      */
+    #[Override]
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         return new AuthenticationService($container->get(NonPersistent::class));
@@ -31,6 +33,7 @@ class AuthenticationServiceFactory implements FactoryInterface
      *
      * @return AuthenticationService
      */
+    #[Override]
     public function createService(ServiceLocatorInterface $container)
     {
         return $this($container, AuthenticationService::class);

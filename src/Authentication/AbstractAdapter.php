@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laminas\ApiTools\MvcAuth\Authentication;
 
 use Laminas\Http\Request;
+use Override;
 
 use function in_array;
 use function preg_split;
@@ -27,6 +28,7 @@ abstract class AbstractAdapter implements AdapterInterface
      *
      * @return false|string
      */
+    #[Override]
     public function getTypeFromRequest(Request $request)
     {
         $request->getHeaders();

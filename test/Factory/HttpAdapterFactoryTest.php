@@ -11,6 +11,8 @@ use Laminas\Authentication\Adapter\Http\FileResolver;
 use Laminas\Authentication\Adapter\Http\ResolverInterface;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Override;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class HttpAdapterFactoryTest extends TestCase
@@ -21,6 +23,7 @@ class HttpAdapterFactoryTest extends TestCase
     /** @var string */
     private $htdigest;
 
+    #[Override]
     public function setUp(): void
     {
         $this->htpasswd = __DIR__ . '/../TestAsset/htpasswd';
@@ -51,9 +54,9 @@ class HttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidAcceptSchemes
      * @param mixed $acceptSchemes
      */
+    #[DataProvider('invalidAcceptSchemes')]
     public function testFactoryRaisesExceptionWhenAcceptSchemesIsNotAnArray($acceptSchemes): void
     {
         $this->expectException(ServiceNotCreatedException::class);
@@ -122,9 +125,9 @@ class HttpAdapterFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider validConfigWithoutResolvers
      * @psalm-param array<string, mixed> $config
      */
+    #[DataProvider('validConfigWithoutResolvers')]
     public function testCanReturnAdapterWithNoResolvers(array $config): void
     {
         $adapter = HttpAdapterFactory::factory($config);
@@ -186,14 +189,14 @@ class HttpAdapterFactoryTest extends TestCase
             ->expects($this->once())
             ->method('has')
             ->with($keyForServiceManager)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $resolver = $this->getMockBuilder(ResolverInterface::class)->getMock();
         $serviceManager
             ->expects($this->once())
             ->method('get')
             ->with($keyForServiceManager)
-            ->will($this->returnValue($resolver));
+            ->willReturn($resolver);
 
         $adapter = HttpAdapterFactory::factory([
             'accept_schemes'         => ['basic', 'digest'],
@@ -218,14 +221,14 @@ class HttpAdapterFactoryTest extends TestCase
             ->expects($this->once())
             ->method('has')
             ->with($keyForServiceManager)
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $resolver = $this->getMockBuilder(ResolverInterface::class)->getMock();
         $serviceManager
             ->expects($this->once())
             ->method('get')
             ->with($keyForServiceManager)
-            ->will($this->returnValue($resolver));
+            ->willReturn($resolver);
 
         $adapter = HttpAdapterFactory::factory([
             'accept_schemes'          => ['basic', 'digest'],
@@ -285,7 +288,7 @@ class HttpAdapterFactoryTest extends TestCase
             ->expects($this->any())
             ->method('has')
             ->with($missingKeyForServiceManager)
-            ->will($this->returnValue(false));
+            ->willReturn(false);
         $serviceManager
             ->expects($this->never())
             ->method('get');

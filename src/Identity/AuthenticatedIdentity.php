@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laminas\ApiTools\MvcAuth\Identity;
 
 use Laminas\Permissions\Rbac\Role;
+use Override;
 
 class AuthenticatedIdentity extends Role implements IdentityInterface
 {
@@ -18,12 +19,14 @@ class AuthenticatedIdentity extends Role implements IdentityInterface
     }
 
     /** @return null|string */
+    #[Override]
     public function getRoleId()
     {
         return $this->name;
     }
 
     /** @return mixed */
+    #[Override]
     public function getAuthenticationIdentity()
     {
         return $this->identity;

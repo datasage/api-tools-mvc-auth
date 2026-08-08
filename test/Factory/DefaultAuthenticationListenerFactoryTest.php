@@ -16,6 +16,7 @@ use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
 use OAuth2\Server as OAuth2Server;
 use OAuth2\Storage\Pdo as PdoStorage;
+use Override;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
 use ReflectionProperty;
@@ -30,6 +31,7 @@ class DefaultAuthenticationListenerFactoryTest extends TestCase
     /** @var ServiceManager */
     private $services;
 
+    #[Override]
     public function setUp(): void
     {
         $this->services = new ServiceManager();
