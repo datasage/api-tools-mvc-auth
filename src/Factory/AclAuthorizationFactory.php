@@ -7,8 +7,7 @@ namespace Laminas\ApiTools\MvcAuth\Factory;
 use Laminas\ApiTools\MvcAuth\Authorization\AclAuthorization;
 use Laminas\ApiTools\MvcAuth\Authorization\AclAuthorizationFactory as AclFactory;
 use Laminas\Http\Request;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Override;
 use Psr\Container\ContainerInterface;
 
@@ -44,19 +43,6 @@ class AclAuthorizationFactory implements FactoryInterface
     {
         $config = $this->getConfigFromContainer($container);
         return $this->createAclFromConfig($config);
-    }
-
-    /**
-     * Create the AclAuthorization (v2).
-     *
-     * Provided for backwards compatibility; proxies to __invoke().
-     *
-     * @return AclAuthorization
-     */
-    #[Override]
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, AclAuthorization::class);
     }
 
     /**

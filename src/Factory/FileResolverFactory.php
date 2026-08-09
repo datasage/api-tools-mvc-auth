@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Laminas\ApiTools\MvcAuth\Factory;
 
 use Laminas\Authentication\Adapter\Http\FileResolver;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Override;
 use Psr\Container\ContainerInterface;
 
@@ -35,18 +34,5 @@ class FileResolverFactory implements FactoryInterface
         $htdigest = $config['api-tools-mvc-auth']['authentication']['http']['htdigest'];
 
         return new FileResolver($htdigest);
-    }
-
-    /**
-     * Create and return a FileResolver instance, if configured (v2).
-     *
-     * Provided for backwards compatibility; proxies to __invoke().
-     *
-     * @return false|FileResolver
-     */
-    #[Override]
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, FileResolver::class);
     }
 }

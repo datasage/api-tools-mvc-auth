@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\ApiTools\MvcAuth\Factory;
 
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Override;
 use Psr\Container\ContainerInterface;
 
@@ -36,18 +35,5 @@ class ApacheResolverFactory implements FactoryInterface
         $htpasswd = $config['api-tools-mvc-auth']['authentication']['http']['htpasswd'];
 
         return new ApacheResolver($htpasswd);
-    }
-
-    /**
-     * Create and return an ApacheResolve instance (v2).
-     *
-     * Exists for backwards compatibility only; proxies to __invoke().
-     *
-     * @return false|ApacheResolver
-     */
-    #[Override]
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, ApacheResolver::class);
     }
 }

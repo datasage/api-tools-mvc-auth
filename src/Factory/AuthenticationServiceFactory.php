@@ -6,8 +6,7 @@ namespace Laminas\ApiTools\MvcAuth\Factory;
 
 use Laminas\Authentication\AuthenticationService;
 use Laminas\Authentication\Storage\NonPersistent;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Override;
 use Psr\Container\ContainerInterface;
 
@@ -24,18 +23,5 @@ class AuthenticationServiceFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         return new AuthenticationService($container->get(NonPersistent::class));
-    }
-
-    /**
-     * Create and return an AuthenticationService instance (v2).
-     *
-     * Provided for backwards compatibility; proxies to __invoke().
-     *
-     * @return AuthenticationService
-     */
-    #[Override]
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, AuthenticationService::class);
     }
 }
