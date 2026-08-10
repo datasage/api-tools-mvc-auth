@@ -39,13 +39,10 @@ class HttpAdapter extends AbstractAdapter
      */
     private $providesBase;
 
-    /**
-     * @param null|string $providesBase
-     */
     public function __construct(
         HttpAuth $httpAuth,
         AuthenticationServiceInterface $authenticationService,
-        $providesBase = null
+        ?string $providesBase = null
     ) {
         $this->httpAuth              = $httpAuth;
         $this->authenticationService = $authenticationService;

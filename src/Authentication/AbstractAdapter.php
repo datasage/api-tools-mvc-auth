@@ -50,10 +50,9 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Determine the authentication type from the authorization header contents
      *
-     * @param string $header
      * @return false|string
      */
-    private function getTypeFromAuthorizationHeader($header)
+    private function getTypeFromAuthorizationHeader(string $header)
     {
         // we only support headers in the format: Authorization: xxx yyyyy
         if (strpos($header, ' ') === false) {

@@ -79,7 +79,7 @@ final class OAuth2ServerFactory
      * @param string $adapter One of "pdo" or "mongo".
      * @return MongoAdapter|PdoAdapter
      */
-    private static function createStorageFromAdapter($adapter, array $config, ContainerInterface $container)
+    private static function createStorageFromAdapter(string $adapter, array $config, ContainerInterface $container)
     {
         switch (strtolower($adapter)) {
             case 'pdo':

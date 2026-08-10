@@ -688,9 +688,9 @@
     <PropertyNotSetInConstructor>
       <code><![CDATA[$authenticationResult]]></code>
     </PropertyNotSetInConstructor>
-    <RedundantCastGivenDocblockType>
+    <RedundantCast>
       <code><![CDATA[(bool) $flag]]></code>
-    </RedundantCastGivenDocblockType>
+    </RedundantCast>
     <RedundantConditionGivenDocblockType>
       <code><![CDATA[$this->authenticationResult !== null]]></code>
     </RedundantConditionGivenDocblockType>
