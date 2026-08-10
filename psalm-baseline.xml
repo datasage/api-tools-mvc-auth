@@ -1084,9 +1084,6 @@
     <InvalidDocblock>
       <code><![CDATA[public static function expectedListeners(): array]]></code>
     </InvalidDocblock>
-    <MismatchingDocblockParamType>
-      <code><![CDATA[callable(MvcEvent|MvcAuthEvent):null|Response]]></code>
-    </MismatchingDocblockParamType>
     <MixedArgument>
       <code><![CDATA[$config['service_manager']]]></code>
       <code><![CDATA[$config['service_manager']]]></code>
@@ -1105,9 +1102,6 @@
      *     3: EventManager
      * }>]]></code>
     </MixedReturnStatement>
-    <PossiblyInvalidArgument>
-      <code><![CDATA[$listener]]></code>
-    </PossiblyInvalidArgument>
     <UndefinedMagicMethod>
       <code><![CDATA[getRequest]]></code>
     </UndefinedMagicMethod>
