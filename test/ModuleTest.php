@@ -118,7 +118,7 @@ class ModuleTest extends TestCase
     }
 
     /**
-     * @psalm-param callable(MvcEvent|MvcAuthEvent):null|Response $listener
+     * @psalm-param callable(MvcEvent|MvcAuthEvent):(null|Response) $listener
      * @psalm-param MvcEvent::EVENT_*|MvcAuthEvent::EVENT_* $event
      */
     #[DataProvider('expectedListeners')]
