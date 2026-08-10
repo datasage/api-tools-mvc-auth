@@ -35,7 +35,7 @@
         "laminas-api-tools/api-tools-oauth2": "^1.11",
         "laminas/laminas-authentication": "^2.19",
         "laminas/laminas-eventmanager": "^3.15",
-        "laminas/laminas-http": "^2.23",
+        "laminas/laminas-http": "^2.23 || ^3.0",
         "laminas/laminas-modulemanager": "^2.19",
         "laminas/laminas-mvc": "^3.8",
         "laminas/laminas-permissions-acl": "^2.18",
