@@ -227,21 +227,6 @@ return [
                         ],
                     ],
                 ],
-                'client' => [
-                    // This defines an OAuth2 adapter backed by Mongo.
-                    'adapter' => 'Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter',
-                    'storage' => [
-                        'adapter' => 'mongo',
-                        'locator_name' => 'SomeServiceName', // If provided, pulls the given service
-                        'dsn' => 'mongodb://localhost',
-                        'database' => 'oauth2',
-                        'options' => [
-                            'username' => 'username',
-                            'password' => 'password',
-                            'connectTimeoutMS' => 500,
-                        ],
-                    ],
-                ],
             ],
         ],
     ],
@@ -631,21 +616,6 @@ return [
                         'password' => 'password',
                         'options' => [
                             1002 => 'SET NAMES utf8', // PDO::MYSQL_ATTR_INIT_COMMAND
-                        ],
-                    ],
-                ],
-                'client' => [
-                    // This defines an OAuth2 adapter backed by Mongo.
-                    'adapter' => 'Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter',
-                    'storage' => [
-                        'adapter' => 'mongo',
-                        'locator_name' => 'SomeServiceName', // If provided, pulls the given service
-                        'dsn' => 'mongodb://localhost',
-                        'database' => 'oauth2',
-                        'options' => [
-                            'username' => 'username',
-                            'password' => 'password',
-                            'connectTimeoutMS' => 500,
                         ],
                     ],
                 ],
