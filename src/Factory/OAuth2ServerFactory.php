@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Laminas\ApiTools\MvcAuth\Factory;
 
-use Laminas\ApiTools\OAuth2\Adapter\MongoAdapter;
 use Laminas\ApiTools\OAuth2\Adapter\PdoAdapter;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use MongoClient;
-use MongoDB;
 use OAuth2\GrantType\AuthorizationCode;
 use OAuth2\GrantType\ClientCredentials;
 use OAuth2\GrantType\JwtBearer;
@@ -55,12 +52,12 @@ final class OAuth2ServerFactory
     /**
      * Create and return an OAuth2 storage adapter instance.
      *
-     * @return array|MongoAdapter|PdoAdapter A PdoAdapter, MongoAdapter, or array of storage instances.
+     * @return array|PdoAdapter A PdoAdapter or array of storage instances.
      */
     private static function createStorage(array $config, ContainerInterface $container)
     {
         if (isset($config['adapter']) && is_string($config['adapter'])) {
-            return self::createStorageFromAdapter($config['adapter'], $config, $container);
+            return self::createStorageFromAdapter($config['adapter'], $config);
         }
 
         if (
@@ -76,16 +73,14 @@ final class OAuth2ServerFactory
     /**
      * Create an OAuth2 storage instance based on the adapter specified.
      *
-     * @param string $adapter One of "pdo" or "mongo".
-     * @return MongoAdapter|PdoAdapter
+     * @param string $adapter Must be "pdo".
+     * @return PdoAdapter
      */
-    private static function createStorageFromAdapter(string $adapter, array $config, ContainerInterface $container)
+    private static function createStorageFromAdapter(string $adapter, array $config)
     {
         switch (strtolower($adapter)) {
             case 'pdo':
                 return self::createPdoAdapter($config);
-            case 'mongo':
-                return self::createMongoAdapter($config, $container);
             default:
                 throw new ServiceNotCreatedException('Invalid storage adapter type for OAuth2');
         }
@@ -130,19 +125,6 @@ final class OAuth2ServerFactory
     }
 
     /**
-     * Create and return an OAuth2 Mongo adapter.
-     *
-     * @return MongoAdapter
-     */
-    private static function createMongoAdapter(array $config, ContainerInterface $container)
-    {
-        return new MongoAdapter(
-            self::createMongoDatabase($config, $container),
-            self::getOAuth2ServerConfig($config)
-        );
-    }
-
-    /**
      * Create and return the configuration needed to create a PDO instance.
      *
      * @return array
@@ -165,32 +147,6 @@ final class OAuth2ServerFactory
             'password' => $password,
             'options'  => $options,
         ];
-    }
-
-    /**
-     * Create and return a Mongo database instance.
-     *
-     * @return MongoDB
-     */
-    private static function createMongoDatabase(array $config, ContainerInterface $container)
-    {
-        $dbLocatorName = $config['locator_name'] ?? 'MongoDB';
-
-        if ($container->has($dbLocatorName)) {
-            return $container->get($dbLocatorName);
-        }
-
-        if (! isset($config['database'])) {
-            throw new ServiceNotCreatedException(
-                'Missing OAuth2 Mongo database configuration'
-            );
-        }
-
-        $options            = $config['options'] ?? [];
-        $options['connect'] = false;
-        $server             = $config['dsn'] ?? null;
-        $mongo              = new MongoClient($server, $options);
-        return $mongo->{$config['database']};
     }
 
     /**

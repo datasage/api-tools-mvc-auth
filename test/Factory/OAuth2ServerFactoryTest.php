@@ -7,7 +7,6 @@ namespace LaminasTest\ApiTools\MvcAuth\Factory;
 use Laminas\ApiTools\MvcAuth\Factory\OAuth2ServerFactory;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
-use MongoDB;
 use OAuth2\GrantType;
 use OAuth2\OpenID\GrantType\AuthorizationCode as OpenIDAuthorizationCodeGrantType;
 use OAuth2\Server as OAuth2Server;
@@ -16,7 +15,6 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
-use function class_exists;
 use function sprintf;
 
 class OAuth2ServerFactoryTest extends TestCase
@@ -88,50 +86,14 @@ class OAuth2ServerFactoryTest extends TestCase
         $this->assertInstanceOf(OAuth2Server::class, $server);
     }
 
-    public function testCanCreateMongoBackedServerUsingMongoFromServices(): void
-    {
-        if (! class_exists(MongoDB::class)) {
-            $this->markTestSkipped('Mongo extension is required for this test');
-        }
-
-        $services    = $this->mockConfig(new ServiceManager());
-        $mongoClient = $this->createStub(MongoDB::class);
-        $services->setService('MongoService', $mongoClient);
-
-        $config = [
-            'adapter'      => 'mongo',
-            'locator_name' => 'MongoService',
-        ];
-        $server = OAuth2ServerFactory::factory($config, $services);
-        $this->assertInstanceOf(OAuth2Server::class, $server);
-    }
-
-    public function testRaisesExceptionCreatingMongoBackedServerIfDatabaseIsMissing(): void
+    public function testMongoIsNoLongerAValidStorageAdapter(): void
     {
         $services = $this->mockConfig(new ServiceManager());
-        $config   = [
-            'adapter' => 'mongo',
-        ];
 
         $this->expectException(ServiceNotCreatedException::class);
-        $this->expectExceptionMessage('database');
+        $this->expectExceptionMessage('Invalid storage adapter type for OAuth2');
 
-        OAuth2ServerFactory::factory($config, $services);
-    }
-
-    public function testCanCreateMongoAdapterBackedServer(): void
-    {
-        if (! class_exists(MongoDB::class)) {
-            $this->markTestSkipped('Mongo extension is required for this test');
-        }
-
-        $services = $this->mockConfig(new ServiceManager());
-        $config   = [
-            'adapter'  => 'mongo',
-            'database' => 'api-tools-mvc-auth-test',
-        ];
-        $server   = OAuth2ServerFactory::factory($config, $services);
-        $this->assertInstanceOf(OAuth2Server::class, $server);
+        OAuth2ServerFactory::factory(['adapter' => 'mongo'], $services);
     }
 
     /** @psalm-return array<string, array{0: string}> */

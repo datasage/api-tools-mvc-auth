@@ -107,9 +107,9 @@ return [
              *
              * - Specify a "storage" subkey pointing to a named service or an array
              *   of named services to use.
-             * - Specify an "adapter" subkey with the value "pdo" or "mongo", and
+             * - Specify an "adapter" subkey with the value "pdo", and
              *   include additional subkeys for configuring a Laminas\ApiTools\OAuth2\Adapter\PdoAdapter
-             *   or Laminas\ApiTools\OAuth2\Adapter\MongoAdapter, accordingly. See the api-tools-oauth2
+             *   accordingly. See the api-tools-oauth2
              *   documentation for details.
              *
              * This looks like the following for the HTTP basic/digest and OAuth2
@@ -142,22 +142,6 @@ return [
                         'password' => 'password',
                         'options' => [
                             1002 => 'SET NAMES utf8', // PDO::MYSQL_ATTR_INIT_COMMAND
-                        ],
-                    ],
-                ],
-                // OAuth2 adapter, using an "adapter" type of "mongo"
-                'client' => [
-                    'adapter' => 'Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter',
-                    'storage' => [
-                        'adapter' => 'mongo',
-                        'route' => '/client',
-                        'locator_name' => 'SomeServiceName', // If provided, pulls the given service
-                        'dsn' => 'mongodb://localhost',
-                        'database' => 'oauth2',
-                        'options' => [
-                            'username' => 'username',
-                            'password' => 'password',
-                            'connectTimeoutMS' => 500,
                         ],
                     ],
                 ],

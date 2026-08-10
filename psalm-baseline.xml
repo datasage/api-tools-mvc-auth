@@ -549,14 +549,12 @@
       <code><![CDATA[$server->getStorage('user_credentials')]]></code>
     </ArgumentTypeCoercion>
     <InvalidArgument>
-      <code><![CDATA[self::createMongoDatabase($config, $container)]]></code>
       <code><![CDATA[self::createPdoConfig($config)]]></code>
     </InvalidArgument>
     <InvalidCast>
       <code><![CDATA[self::createPdoConfig($config)]]></code>
     </InvalidCast>
     <MixedArgument>
-      <code><![CDATA[$dbLocatorName]]></code>
       <code><![CDATA[$oauth2Config]]></code>
       <code><![CDATA[$oauth2Config['grant_types']]]></code>
       <code><![CDATA[$options]]></code>
@@ -568,48 +566,30 @@
     <MixedArrayAccess>
       <code><![CDATA[$allConfig['api-tools-oauth2']]]></code>
     </MixedArrayAccess>
-    <MixedArrayAssignment>
-      <code><![CDATA[$options['connect']]]></code>
-    </MixedArrayAssignment>
     <MixedAssignment>
       <code><![CDATA[$accessLifetime]]></code>
       <code><![CDATA[$allConfig]]></code>
       <code><![CDATA[$allowImplicit]]></code>
       <code><![CDATA[$audience]]></code>
       <code><![CDATA[$clientOptions['allow_credentials_in_request_body']]]></code>
-      <code><![CDATA[$dbLocatorName]]></code>
       <code><![CDATA[$enforceState]]></code>
-      <code><![CDATA[$mongo]]></code>
       <code><![CDATA[$oauth2Config]]></code>
-      <code><![CDATA[$options]]></code>
       <code><![CDATA[$options]]></code>
       <code><![CDATA[$options]]></code>
       <code><![CDATA[$password]]></code>
       <code><![CDATA[$refreshOptions['always_issue_new_refresh_token']]]></code>
       <code><![CDATA[$refreshOptions['refresh_token_lifetime']]]></code>
       <code><![CDATA[$refreshOptions['unset_refresh_token_after_use']]]></code>
-      <code><![CDATA[$server]]></code>
       <code><![CDATA[$storage[$key]]]></code>
       <code><![CDATA[$username]]></code>
     </MixedAssignment>
-    <MixedPropertyFetch>
-      <code><![CDATA[$mongo->{$config['database']}]]></code>
-    </MixedPropertyFetch>
-    <MixedReturnStatement>
-      <code><![CDATA[$container->get($dbLocatorName)]]></code>
-      <code><![CDATA[$mongo->{$config['database']}]]></code>
-    </MixedReturnStatement>
     <PossiblyNullArgument>
       <code><![CDATA[$server->getStorage('client_credentials')]]></code>
       <code><![CDATA[$server->getStorage('jwt_bearer')]]></code>
       <code><![CDATA[$server->getStorage('refresh_token')]]></code>
       <code><![CDATA[$server->getStorage('user_credentials')]]></code>
     </PossiblyNullArgument>
-    <UndefinedClass>
-      <code><![CDATA[MongoClient]]></code>
-    </UndefinedClass>
     <UndefinedDocblockClass>
-      <code><![CDATA[MongoDB]]></code>
       <code><![CDATA[array|ArrayAccess]]></code>
     </UndefinedDocblockClass>
     <UnusedConstructor>
