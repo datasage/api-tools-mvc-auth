@@ -183,10 +183,9 @@ class OAuth2Adapter extends AbstractAdapter
     /**
      * Merge the OAuth2\Response instance's status and headers into the current Laminas\Http\Response.
      *
-     * @param int $status
      * @return Response
      */
-    private function mergeOAuth2Response($status, Response $response, OAuth2Response $oauth2Response)
+    private function mergeOAuth2Response(int $status, Response $response, OAuth2Response $oauth2Response)
     {
         $response->setStatusCode($status);
         return $this->mergeOAuth2ResponseHeaders($response, $oauth2Response->getHttpHeaders());

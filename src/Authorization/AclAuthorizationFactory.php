@@ -48,7 +48,7 @@ abstract class AclAuthorizationFactory
      * @param string $grantType Either "allow" or "deny".
      * @return AclAuthorization
      */
-    private static function injectGrants(AclAuthorization $acl, $grantType, array $rules)
+    private static function injectGrants(AclAuthorization $acl, string $grantType, array $rules)
     {
         foreach ($rules as $set) {
             if (! is_array($set) || ! isset($set['resource'])) {
@@ -64,10 +64,9 @@ abstract class AclAuthorizationFactory
     /**
      * Inject the ACL with the grant specified by a single rule set.
      *
-     * @param string $grantType
      * @return void
      */
-    private static function injectGrant(AclAuthorization $acl, $grantType, array $ruleSet)
+    private static function injectGrant(AclAuthorization $acl, string $grantType, array $ruleSet)
     {
         // Add new resource to ACL
         $resource = $ruleSet['resource'];

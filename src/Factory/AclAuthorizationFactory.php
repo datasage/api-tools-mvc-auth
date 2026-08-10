@@ -75,15 +75,13 @@ class AclAuthorizationFactory implements FactoryInterface
      * - Extracts a privilege per action
      * - Extracts privileges for each of "collection" and "entity" configured
      *
-     * @param string $controllerService
      * @param array $aclConfig
-     * @param bool $denyByDefault
      */
     protected function createAclConfigFromPrivileges(
-        $controllerService,
+        string $controllerService,
         array $privileges,
         &$aclConfig,
-        $denyByDefault
+        bool $denyByDefault
     ): void {
         // Normalize the controller service name.
         // laminas-mvc will always pass the name using namespace seprators, but
@@ -117,10 +115,9 @@ class AclAuthorizationFactory implements FactoryInterface
     /**
      * Create the list of HTTP methods defining privileges
      *
-     * @param bool $denyByDefault
      * @return array|null
      */
-    protected function createPrivilegesFromMethods(array $methods, $denyByDefault)
+    protected function createPrivilegesFromMethods(array $methods, bool $denyByDefault)
     {
         $privileges = [];
 

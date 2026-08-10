@@ -146,10 +146,9 @@ class MvcAuthEvent extends Event
     }
 
     /**
-     * @param  bool $flag
      * @return self
      */
-    public function setIsAuthorized($flag)
+    public function setIsAuthorized(bool $flag)
     {
         $this->authorized = (bool) $flag;
         return $this;

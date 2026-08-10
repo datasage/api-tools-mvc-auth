@@ -69,10 +69,9 @@ class DefaultResourceResolverListener
      * If it cannot resolve a controller service name, boolean false is returned.
      *
      * @param RouteMatch|V2RouteMatch $routeMatch
-     * @param RequestInterface $request
      * @return false|string
      */
-    public function buildResourceString($routeMatch, $request)
+    public function buildResourceString($routeMatch, RequestInterface $request)
     {
         if (! ($routeMatch instanceof RouteMatch || $routeMatch instanceof V2RouteMatch)) {
             throw new InvalidArgumentException(sprintf(
