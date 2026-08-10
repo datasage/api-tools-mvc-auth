@@ -31,8 +31,6 @@
         }
     },
     "require": {
-        "bshaffer/oauth2-server-php": "^1.14.1",
-        "laminas-api-tools/api-tools-oauth2": "^1.11",
         "laminas/laminas-authentication": "^2.19",
         "laminas/laminas-eventmanager": "^3.15",
         "laminas/laminas-http": "^2.23 || ^3.0",
@@ -47,6 +45,8 @@
         "psr/container": "^1.1 || ^2.0"
     },
     "require-dev": {
+        "bshaffer/oauth2-server-php": "^1.14.1",
+        "laminas-api-tools/api-tools-oauth2": "^1.11",
         "laminas/laminas-coding-standard": "^3.1",
         "laminas/laminas-session": "^2.26",
         "phpspec/prophecy-phpunit": "^2.3",
@@ -95,5 +95,9 @@
             "type": "git",
             "url": "https://github.com/datasage/laminas-mvc"
         }
-    ]
+    ],
+    "suggest": {
+        "bshaffer/oauth2-server-php": "^1.14.1, required by the OAuth2 authentication adapter",
+        "laminas-api-tools/api-tools-oauth2": "^1.11, to use the OAuth2 authentication adapter"
+    }
 }
