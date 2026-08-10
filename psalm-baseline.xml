@@ -229,9 +229,6 @@
     <ClassMustBeFinal>
       <code><![CDATA[AclAuthorizationFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[AclAuthorizationFactory]]></code>
-    </DeprecatedInterface>
     <MixedArgument>
       <code><![CDATA[$action]]></code>
       <code><![CDATA[$methods]]></code>
@@ -256,23 +253,14 @@
     <MixedReturnStatement>
       <code><![CDATA[$config['api-tools-mvc-auth']['authorization']]]></code>
     </MixedReturnStatement>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
   </file>
   <file src="src/Factory/ApacheResolverFactory.php">
     <ClassMustBeFinal>
       <code><![CDATA[ApacheResolverFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[ApacheResolverFactory]]></code>
-    </DeprecatedInterface>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[false|ApacheResolver]]></code>
     </ImplementedReturnTypeMismatch>
-    <MixedArgument>
-      <code><![CDATA[ApacheResolver::class]]></code>
-    </MixedArgument>
     <MixedArrayAccess>
       <code><![CDATA[$config['api-tools-mvc-auth']]]></code>
       <code><![CDATA[$config['api-tools-mvc-auth']['authentication']]]></code>
@@ -286,15 +274,10 @@
     <MixedReturnStatement>
       <code><![CDATA[new ApacheResolver($htpasswd)]]></code>
     </MixedReturnStatement>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
     <UndefinedClass>
-      <code><![CDATA[ApacheResolver]]></code>
       <code><![CDATA[ApacheResolver]]></code>
     </UndefinedClass>
     <UndefinedDocblockClass>
-      <code><![CDATA[false|ApacheResolver]]></code>
       <code><![CDATA[false|ApacheResolver]]></code>
     </UndefinedDocblockClass>
   </file>
@@ -302,9 +285,6 @@
     <ClassMustBeFinal>
       <code><![CDATA[AuthenticationAdapterDelegatorFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[AuthenticationAdapterDelegatorFactory]]></code>
-    </DeprecatedInterface>
     <MixedArgument>
       <code><![CDATA[$data]]></code>
       <code><![CDATA[$listener]]></code>
@@ -326,9 +306,6 @@
       <code><![CDATA[$listener]]></code>
       <code><![CDATA[$listener]]></code>
     </MixedReturnStatement>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
   </file>
   <file src="src/Factory/AuthenticationHttpAdapterFactory.php">
     <MixedArgument>
@@ -353,23 +330,14 @@
     <ClassMustBeFinal>
       <code><![CDATA[AuthenticationServiceFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[AuthenticationServiceFactory]]></code>
-    </DeprecatedInterface>
     <MixedArgument>
       <code><![CDATA[$container->get(NonPersistent::class)]]></code>
     </MixedArgument>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
   </file>
   <file src="src/Factory/DefaultAuthHttpAdapterFactory.php">
     <ClassMustBeFinal>
       <code><![CDATA[DefaultAuthHttpAdapterFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[DefaultAuthHttpAdapterFactory]]></code>
-    </DeprecatedInterface>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[HttpAuth|false]]></code>
     </ImplementedReturnTypeMismatch>
@@ -384,17 +352,11 @@
     <MixedAssignment>
       <code><![CDATA[$config]]></code>
     </MixedAssignment>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
   </file>
   <file src="src/Factory/DefaultAuthenticationListenerFactory.php">
     <ClassMustBeFinal>
       <code><![CDATA[DefaultAuthenticationListenerFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[DefaultAuthenticationListenerFactory]]></code>
-    </DeprecatedInterface>
     <MixedArgument>
       <code><![CDATA[$authService]]></code>
       <code><![CDATA[$config['api-tools-oauth2']['storage']]]></code>
@@ -429,9 +391,6 @@
       <code><![CDATA[$config['api-tools-mvc-auth']['authentication']['map']]]></code>
       <code><![CDATA[$config['api-tools-mvc-auth']['authentication']['types']]]></code>
     </MixedReturnStatement>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$authenticationTypes]]></code>
     </RiskyTruthyFalsyComparison>
@@ -446,9 +405,6 @@
     <ClassMustBeFinal>
       <code><![CDATA[DefaultAuthorizationListenerFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[DefaultAuthorizationListenerFactory]]></code>
-    </DeprecatedInterface>
     <MixedArgument>
       <code><![CDATA[$authorization]]></code>
       <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface::class]]></code>
@@ -457,9 +413,6 @@
     <MixedAssignment>
       <code><![CDATA[$authorization]]></code>
     </MixedAssignment>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
     <UndefinedClass>
       <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface]]></code>
       <code><![CDATA[\ZF\MvcAuth\Authorization\AuthorizationInterface]]></code>
@@ -469,9 +422,6 @@
     <ClassMustBeFinal>
       <code><![CDATA[DefaultResourceResolverListenerFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[DefaultResourceResolverListenerFactory]]></code>
-    </DeprecatedInterface>
     <MixedArgument>
       <code><![CDATA[$config]]></code>
     </MixedArgument>
@@ -487,9 +437,6 @@
       <code><![CDATA[$restConfig]]></code>
       <code><![CDATA[$restServices[$controllerService]]]></code>
     </MixedAssignment>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
     <PossiblyUnusedProperty>
       <code><![CDATA[$httpMethods]]></code>
     </PossiblyUnusedProperty>
@@ -498,9 +445,6 @@
     <ClassMustBeFinal>
       <code><![CDATA[FileResolverFactory]]></code>
     </ClassMustBeFinal>
-    <DeprecatedInterface>
-      <code><![CDATA[FileResolverFactory]]></code>
-    </DeprecatedInterface>
     <ImplementedReturnTypeMismatch>
       <code><![CDATA[false|FileResolver]]></code>
     </ImplementedReturnTypeMismatch>
@@ -517,9 +461,6 @@
       <code><![CDATA[$config]]></code>
       <code><![CDATA[$htdigest]]></code>
     </MixedAssignment>
-    <ParamNameMismatch>
-      <code><![CDATA[$container]]></code>
-    </ParamNameMismatch>
   </file>
   <file src="src/Factory/HttpAdapterFactory.php">
     <MixedArgument>

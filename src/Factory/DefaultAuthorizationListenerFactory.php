@@ -7,8 +7,7 @@ namespace Laminas\ApiTools\MvcAuth\Factory;
 use Laminas\ApiTools\MvcAuth\Authorization\AuthorizationInterface;
 use Laminas\ApiTools\MvcAuth\Authorization\DefaultAuthorizationListener;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Override;
 use Psr\Container\ContainerInterface;
 
@@ -46,18 +45,5 @@ class DefaultAuthorizationListenerFactory implements FactoryInterface
             : $container->get(\ZF\MvcAuth\Authorization\AuthorizationInterface::class);
 
         return new DefaultAuthorizationListener($authorization);
-    }
-
-    /**
-     * Create and return the default authorization listener (v2).
-     *
-     * Provided for backwards compatibility; proxies to __invoke().
-     *
-     * @return DefaultAuthorizationListener
-     */
-    #[Override]
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, DefaultAuthorizationListener::class);
     }
 }

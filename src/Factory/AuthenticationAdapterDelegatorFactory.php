@@ -7,8 +7,7 @@ namespace Laminas\ApiTools\MvcAuth\Factory;
 use Laminas\ApiTools\MvcAuth\Authentication\DefaultAuthenticationListener;
 use Laminas\ApiTools\MvcAuth\Authentication\HttpAdapter;
 use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
-use Laminas\ServiceManager\DelegatorFactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Override;
 use Psr\Container\ContainerInterface;
 
@@ -44,22 +43,6 @@ class AuthenticationAdapterDelegatorFactory implements DelegatorFactoryInterface
         }
 
         return $listener;
-    }
-
-    /**
-     * Decorate the DefaultAuthenticationListener (v2)
-     *
-     * Provided for backwards compatibility; proxies to __invoke().
-     *
-     * @param string $name
-     * @param string $requestedName
-     * @param callable $callback
-     * @return DefaultAuthenticationListener
-     */
-    #[Override]
-    public function createDelegatorWithName(ServiceLocatorInterface $container, $name, $requestedName, $callback)
-    {
-        return $this($container, $requestedName, $callback);
     }
 
     /**

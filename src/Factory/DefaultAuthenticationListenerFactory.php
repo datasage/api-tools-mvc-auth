@@ -8,8 +8,7 @@ use Laminas\ApiTools\MvcAuth\Authentication\DefaultAuthenticationListener;
 use Laminas\ApiTools\MvcAuth\Authentication\HttpAdapter;
 use Laminas\ApiTools\MvcAuth\Authentication\OAuth2Adapter;
 use Laminas\ApiTools\OAuth2\Factory\OAuth2ServerFactory as LaminasOAuth2ServerFactory;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Override;
 use Psr\Container\ContainerInterface;
 use RuntimeException;
@@ -53,19 +52,6 @@ class DefaultAuthenticationListenerFactory implements FactoryInterface
         $listener->setAuthMap($this->getAuthenticationMap($container));
 
         return $listener;
-    }
-
-    /**
-     * Create and return a DefaultAuthenticationListener (v2).
-     *
-     * Provided for backwards compatibility; proxies to __invoke().
-     *
-     * @return DefaultAuthenticationListener
-     */
-    #[Override]
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, DefaultAuthenticationListener::class);
     }
 
     /**
